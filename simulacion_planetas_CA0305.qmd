@@ -1,5 +1,5 @@
 ---
-title: "El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos"
+#title: "El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos"
 format: pdf 
 ---
 \begin{center}
@@ -23,8 +23,7 @@ format: pdf
 	\rule{\linewidth}{0.5mm}
 \end{center}
 
-
-## Introducción 
+## Introducción
 
   El movimiento de los cuerpos celestes ha despertado un profundo interés durante siglos, tanto para la comunidad física como matemática. De hecho, ha sido impulsor de revoluciones científicas y filosóficas a lo largo de la historia. En sus inicios,  los grandes pensadores centraban sus ideas en el movimiento de los cuerpos del sistema solar. 
   
@@ -35,4 +34,4 @@ format: pdf
   Este problema es de gran importancia en astronomía, mecánica orbital, dinámica galáctica, formación estelar, así como en la determinación de trayectorias óptimas para misiones de naves espaciales (Perezagua, 2022). 
   
   Sin embargo, un sistema mayor a dos cuerpos no es analiticamente soluble por tanto no existe una solución explícita del sistema de ecuaciones. En el presente trabajo, se resolverá y simulará la trayectoria en dos cuerpos. Y además, en el caso tres cuerpos se realizará una aproximación con el método de Runge Kutta.
-
+\end 
