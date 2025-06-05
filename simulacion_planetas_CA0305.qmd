@@ -49,4 +49,15 @@ Posteriormente, Johannes Kepler (1571-1630) postula las leyes de Kepler, conocid
 
 Una vez son postuladas y aceptadas las leyes de la mecánica desarrolladas por Newton en 1687 a las cuales también se les conoce como Leyes de Newton, la comunidad científica aprueba la Teoría Heliocéntrica y las las Leyes de Kepler.  El modelo resultante de aplicar las leyes de Newton a un sistema con características similares al nuestro es lo que se conoce como el modelo Kepleriano (Ponce, s.f).
 
-La mecánica clásica newtoniana permite describir el movimiento de los objetos mediante ecuaciones diferenciales. Estas ecuaciones basadas en las Leyes de Newton expresan como cambian las variables físicas como posición y velocidad en función del tiempo.  
+La mecánica clásica newtoniana permite describir el movimiento de los objetos mediante ecuaciones diferenciales. Estas ecuaciones basadas en las Leyes de Newton expresan como cambian las variables físicas como posición y velocidad en función del tiempo. Al resolver el sistema, se obtiene la trayectoria del mismo en cualquier instante. Por lo tanto, el comportamiento del sistema se reduce en calcular las funciones que satisfacen las ecuaciones. Ahora bien, encontrar las funciones mencionadas es sumamente complejo inclusive para modelos simples. Los intentos de encontrar este estas funciones se agrupan bajo el nombre del problema de los n cuerpos (Ponce, s.f).  
+
+Al tratarse de dos cuerpos, por ende el sistema que consiste en las órbitas de dos masas que interactúan a causa de la aceleración gravitacional, el sistema es “analiticamente soluble”. Esto dado que el sistema se puede expresar como una ecuación diferencial y la función del movimiento entre las dos masas se puede describir usando las leyes de movimiento de Newton junto con la fórmula de la fuerza gravitacional. Sin embargo, un sistema de tres o más masas interactuando exclusivamente por la aceleración gravitacional no es “analiticamente soluble” (Pérez et al., s.f). 
+
+
+La conclusión de que no es posible encontrar un función en el caso de tres cuerpos fue desarrollada por Henri Poincaré. El determinó que en casos como el anterior la evolución del sistema es extremadamente caótica. Ya que, una pequeña perturbación en el estado inicial podría llevar eventualmente a un estado totalmente diferente. Por lo tanto, es imposible predecir el estado del sistema dado que los instrumentos de medición ni siquiera pueden detectar esa mínima variación (Pardo, 2022).
+
+
+Poincaré más bien propone un estudio más cualitativo de las órbitas cuando se trata de esta cantidad o mayor cantidad de masas. Es así, que se establece una nueva área en la matemática; sistemas dinámicos (Ponce, s.f).
+
+
+
