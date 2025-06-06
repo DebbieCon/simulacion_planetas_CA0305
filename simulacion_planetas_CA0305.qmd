@@ -80,9 +80,9 @@ Para la aproximación de los dos cuerpos, se tomó como guía el artículo publi
 Con el polinomio ya calculado se crea un data frame en el que para cada día en el rango dado se genera una observación con un valor calculado de posición en las tres coordenadas y velocidad en las tres coordenadas. Con esto en el script de R denominado como LimpiezaDatos.R se carga la base de datos descargada en la página de la NASA denominada [Jet Propulsion Laboratory](https://ssd.jpl.nasa.gov/horizons/app.html#/) donde se obtuvieron los datos de posición y velocidad para la Tierra tomando como observador el Sol, comenzando el día 01-04-2025 y terminando el 05-06-2025. El módulo de R proovee un breve código para leer la tabla y darle formato a la columna de fecha, además de seleccionar las columnas importantes. Es ahí donde en el script AnalisisDatos.R se toma esta base llamando el script LimpiezaDatos.R y la base de datos calculada llamando el script main.py, uniendo ambas tablas, calculando la norma de los vectores de posición y velocidad y generando los porcentajes de error.
 
 ```{r}
-source("cod\\r\\AnalisisDatos.R")
+library(reticulate)
+source("cod/R/AnalisisDatos.R")
 ```
-
 
 
 En la anterior tabla se puede apreciar un pequeño análisis en el porcentaje de error tanto de la posición del cuerpo como de la velocidad, los detalles de este serán mencionados en el FODA.
