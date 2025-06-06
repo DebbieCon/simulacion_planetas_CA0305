@@ -1,8 +1,9 @@
 ---
 #title: "El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos"
 format: pdf 
+bibliography: references.bib
+csl: apa.csl
 ---
-
 ```{=tex}
 \begin{center}
     {\Large\textbf{El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos}}\par 
@@ -29,17 +30,17 @@ format: pdf
 
 El movimiento de los cuerpos celestes ha despertado un profundo interés durante siglos, tanto para la comunidad física como matemática. De hecho, ha sido impulsor de revoluciones científicas y filosóficas a lo largo de la historia. En sus inicios, los grandes pensadores centraban sus ideas en el movimiento de los cuerpos del sistema solar.
 
-A lo largo del tiempo la discusión sobre el movimiento de los cuerpos celestes ha persistido, dando lugar a una variedad de teorías que en ocasiones se han mezclado y coexistido entre ellas. Desde la Teoría Geocéntrica formulada por Aristóteles y desarrollada por Ptolomeo, hasta la Teoría Heliocentrista propuesta por Nicolás Copérnico en el siglo XVI y posteriormente confirmada por Galileo Galilei. Finalmente, la comunidad científica acepta el modelo Kepleriano que agrupa el heliocentrismo, las leyes de Kepler y las leyes de la mecánica establecidas por Newton (Ponce, s.f).
+A lo largo del tiempo la discusión sobre el movimiento de los cuerpos celestes ha persistido, dando lugar a una variedad de teorías que en ocasiones se han mezclado y coexistido entre ellas. Desde la Teoría Geocéntrica formulada por Aristóteles y desarrollada por Ptolomeo, hasta la Teoría Heliocentrista propuesta por Nicolás Copérnico en el siglo XVI y posteriormente confirmada por Galileo Galilei. Finalmente, la comunidad científica acepta el modelo Kepleriano que agrupa el heliocentrismo, las leyes de Kepler y las leyes de la mecánica establecidas por Newton [@Ponce2010].
 
-El problema de los dos cuerpos; es decir, el movimiento de dos masas que interactúan por la aceleración gravitacional puede ser descrita como una función de tiempo y es analiticamente soluble. Gracias a la mecánica clásica Newtoniana es posible describir el movimiento del sistema como una ecuación diferencial por tanto el problema se reduce a calcular las funciones que satisfacen estas ecuaciones (Pérez et al., s.f).
+El problema de los dos cuerpos; es decir, el movimiento de dos masas que interactúan por la aceleración gravitacional puede ser descrita como una función de tiempo y es analiticamente soluble. Gracias a la mecánica clásica Newtoniana es posible describir el movimiento del sistema como una ecuación diferencial por tanto el problema se reduce a calcular las funciones que satisfacen estas ecuaciones [@Guzman2025].
 
-Este problema es de gran importancia en astronomía, mecánica orbital, dinámica galáctica, formación estelar, así como en la determinación de trayectorias óptimas para misiones de naves espaciales (Perezagua, 2022).
+Este problema es de gran importancia en astronomía, mecánica orbital, dinámica galáctica, formación estelar, así como en la determinación de trayectorias óptimas para misiones de naves espaciales [@perezagua2022trescuerpos].
 
 Sin embargo, un sistema mayor a dos cuerpos no es analiticamente soluble por tanto no existe una solución explícita del sistema de ecuaciones. En el presente trabajo, se resolverá y simulará la trayectoria en dos cuerpos. Y además, en el caso tres cuerpos se realizará una aproximación con el método de Runge Kutta.
 
 # Exploración
 
-El ser humano desde el inicio de los tiempos ha presentado cierta fascinación con el espacio. Desde las más antiguas civilizaciones el ser humano ha dedicado tiempo y esfuerzo en entender el movimiento de los cuerpos celestes desde una perspectiva filosófica, espiritual y científica. Primeramente, el interés de estas civilizaciones giraba en torno a las estrellas lo que probó ser fundamental con el advenimiento de la navegación (Ponce, s.f).
+El ser humano desde el inicio de los tiempos ha presentado cierta fascinación con el espacio. Desde las más antiguas civilizaciones el ser humano ha dedicado tiempo y esfuerzo en entender el movimiento de los cuerpos celestes desde una perspectiva filosófica, espiritual y científica. Primeramente, el interés de estas civilizaciones giraba en torno a las estrellas lo que probó ser fundamental con el advenimiento de la navegación [@Ponce2010].
 
 Uno de los mayores quiebres en la teoría se produjo por Ptolomeo en el siglo II d.C quien propuso que la Tierra ocupaba el centro del universo y los demás cuerpos giraban en órbitas alrededor de ella es decir, un modelo geocéntrico. Claramente, apoyándose con la teoría de Aristóteles; Teoría del geocentrismo. A pesar de no asemejarse a la realidad que conocemos probó ser bastante preciso en sus cálculos a la hora de predecir fenómenos astronómicos (Cortes, 2021).
 
@@ -56,3 +57,9 @@ Al tratarse de dos cuerpos, por ende el sistema que consiste en las órbitas de 
 La conclusión de que no es posible encontrar un función en el caso de tres cuerpos fue desarrollada por Henri Poincaré. El determinó que en casos como el anterior la evolución del sistema es extremadamente caótica. Ya que, una pequeña perturbación en el estado inicial podría llevar eventualmente a un estado totalmente diferente. Por lo tanto, es imposible predecir el estado del sistema dado que los instrumentos de medición ni siquiera pueden detectar esa mínima variación (Pardo, 2022).
 
 Poincaré más bien propone un estudio más cualitativo de las órbitas cuando se trata de esta cantidad o mayor cantidad de masas. Es así, que se establece una nueva área en la matemática; sistemas dinámicos (Ponce, s.f).
+
+# Implementación
+
+Como se mencionó en la sección de Metodología, para el problema de los dos cuerpos se decidió aproximar la solución de la órbita y a la vez simularla. Aunque la solución de este problema existe tiene muchas variantes según cuales suposiciones iniciales se tomen, entre ellas la conservación de energia, de momento angular, deformaciones en espacio tiempo, tiempo en actuar la fuerza gravitacional, entre otros (Helm, 2022).
+
+Para la aproximación de los dos cuerpos, se tomó como guía el artículo publicado por
