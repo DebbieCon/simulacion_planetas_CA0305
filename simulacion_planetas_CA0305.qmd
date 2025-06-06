@@ -2,62 +2,57 @@
 #title: "El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos"
 format: pdf 
 ---
+
+```{=tex}
 \begin{center}
-	\textbf{\Large{El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos}}\par 
-	\vspace{0.15cm}
+    {\Large\textbf{El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos}}\par 
+    \vspace{0.15cm}
  \large{Proyecto del curso CA0305 - Herramientas de Ciencia de Datos II}
  \\ \vspace{0.3cm}
  
-	\normalsize
-	\raggedleft
-	Jose Andrey Prado Rojas C36174$^{*1}$, Debbie Con Ortega C32250$^{*2}$, Aarón Jesús Retana Castro C26400$^{*3}$ \par 
-	\vspace{0.15cm}
-	\centering
-	
-	\textit{$^*$Estudiantes de Ciencias Actuariales Pura, Escuela de Matemática, Universidad de Costa Rica. San José, Costa Rica. Junio, 2025}\par 
-	\vspace{0.15cm}
-	\raggedright
-	
-	\textit{$^1$\href{joseandrey.prado@ucr.ac.cr}{joseandrey.prado@ucr.ac.cr}, $^2$\href{debbie.con@ucr.ac.cr}{debbie.con@ucr.ac.cr}, $^3$\href{jesus.retana@ucr.ac.cr}{jesus.retana@ucr.ac.cr}}
-	\noindent
-	\rule{\linewidth}{0.5mm}
+    \normalsize
+    \raggedleft
+    Jose Andrey Prado Rojas C36174$^{*1}$, Debbie Con Ortega C32250$^{*2}$, Aarón Jesús Retana Castro C26400$^{*3}$ \par 
+    \vspace{0.15cm}
+    \centering
+    
+    \textit{$^*$Estudiantes de Ciencias Actuariales Pura, Escuela de Matemática, Universidad de Costa Rica. San José, Costa Rica. Junio, 2025}\par 
+    \vspace{0.15cm}
+    \raggedright
+    
+    \textit{$^1$\href{joseandrey.prado@ucr.ac.cr}{joseandrey.prado@ucr.ac.cr}, $^2$\href{debbie.con@ucr.ac.cr}{debbie.con@ucr.ac.cr}, $^3$\href{jesus.retana@ucr.ac.cr}{jesus.retana@ucr.ac.cr}}
+    \noindent
+    \rule{\linewidth}{0.5mm}
 \end{center}
+```
+# Introducción
 
-\large Introducción
+El movimiento de los cuerpos celestes ha despertado un profundo interés durante siglos, tanto para la comunidad física como matemática. De hecho, ha sido impulsor de revoluciones científicas y filosóficas a lo largo de la historia. En sus inicios, los grandes pensadores centraban sus ideas en el movimiento de los cuerpos del sistema solar.
 
-  El movimiento de los cuerpos celestes ha despertado un profundo interés durante siglos, tanto para la comunidad física como matemática. De hecho, ha sido impulsor de revoluciones científicas y filosóficas a lo largo de la historia. En sus inicios,  los grandes pensadores centraban sus ideas en el movimiento de los cuerpos del sistema solar. 
-  
-  A lo largo del tiempo la discusión sobre el movimiento de los cuerpos celestes ha persistido, dando lugar a una variedad de teorías que en ocasiones se han mezclado y coexistido entre ellas. Desde la Teoría Geocéntrica formulada por Aristóteles y desarrollada por Ptolomeo, hasta la Teoría Heliocentrista propuesta por Nicolás Copérnico en el siglo XVI y posteriormente confirmada por Galileo Galilei. Finalmente, la comunidad científica acepta el modelo Kepleriano que agrupa el heliocentrismo, las leyes de Kepler y las leyes de la mecánica establecidas por Newton (Ponce, s.f). 
-  
-  El problema de los dos cuerpos; es decir, el movimiento de dos masas que interactúan por la aceleración gravitacional puede ser descrita como una función de tiempo y es analiticamente soluble. Gracias a la mecánica clásica Newtoniana es posible describir el movimiento del sistema como una ecuación diferencial por tanto el problema se reduce a calcular las funciones que satisfacen estas ecuaciones (Pérez et al., s.f). 
-  
-  Este problema es de gran importancia en astronomía, mecánica orbital, dinámica galáctica, formación estelar, así como en la determinación de trayectorias óptimas para misiones de naves espaciales (Perezagua, 2022). 
-  
-  Sin embargo, un sistema mayor a dos cuerpos no es analiticamente soluble por tanto no existe una solución explícita del sistema de ecuaciones. En el presente trabajo, se resolverá y simulará la trayectoria en dos cuerpos. Y además, en el caso tres cuerpos se realizará una aproximación con el método de Runge Kutta.
+A lo largo del tiempo la discusión sobre el movimiento de los cuerpos celestes ha persistido, dando lugar a una variedad de teorías que en ocasiones se han mezclado y coexistido entre ellas. Desde la Teoría Geocéntrica formulada por Aristóteles y desarrollada por Ptolomeo, hasta la Teoría Heliocentrista propuesta por Nicolás Copérnico en el siglo XVI y posteriormente confirmada por Galileo Galilei. Finalmente, la comunidad científica acepta el modelo Kepleriano que agrupa el heliocentrismo, las leyes de Kepler y las leyes de la mecánica establecidas por Newton (Ponce, s.f).
 
-\newpage 
+El problema de los dos cuerpos; es decir, el movimiento de dos masas que interactúan por la aceleración gravitacional puede ser descrita como una función de tiempo y es analiticamente soluble. Gracias a la mecánica clásica Newtoniana es posible describir el movimiento del sistema como una ecuación diferencial por tanto el problema se reduce a calcular las funciones que satisfacen estas ecuaciones (Pérez et al., s.f).
 
-\large Exploración 
+Este problema es de gran importancia en astronomía, mecánica orbital, dinámica galáctica, formación estelar, así como en la determinación de trayectorias óptimas para misiones de naves espaciales (Perezagua, 2022).
 
-El ser humano desde el inicio de los tiempos ha presentado cierta fascinación con el espacio. Desde las más antiguas civilizaciones el ser humano ha dedicado tiempo y esfuerzo en entender el movimiento de los cuerpos celestes desde una perspectiva filosófica, espiritual y científica. Primeramente, el interés de estas civilizaciones giraba en torno a las estrellas lo que probó ser fundamental con el advenimiento de la navegación (Ponce, s.f). 
+Sin embargo, un sistema mayor a dos cuerpos no es analiticamente soluble por tanto no existe una solución explícita del sistema de ecuaciones. En el presente trabajo, se resolverá y simulará la trayectoria en dos cuerpos. Y además, en el caso tres cuerpos se realizará una aproximación con el método de Runge Kutta.
+
+# Exploración
+
+El ser humano desde el inicio de los tiempos ha presentado cierta fascinación con el espacio. Desde las más antiguas civilizaciones el ser humano ha dedicado tiempo y esfuerzo en entender el movimiento de los cuerpos celestes desde una perspectiva filosófica, espiritual y científica. Primeramente, el interés de estas civilizaciones giraba en torno a las estrellas lo que probó ser fundamental con el advenimiento de la navegación (Ponce, s.f).
 
 Uno de los mayores quiebres en la teoría se produjo por Ptolomeo en el siglo II d.C quien propuso que la Tierra ocupaba el centro del universo y los demás cuerpos giraban en órbitas alrededor de ella es decir, un modelo geocéntrico. Claramente, apoyándose con la teoría de Aristóteles; Teoría del geocentrismo. A pesar de no asemejarse a la realidad que conocemos probó ser bastante preciso en sus cálculos a la hora de predecir fenómenos astronómicos (Cortes, 2021).
 
-Luego en el siglo XVI, Nicolás Copérnico plantea el sol como el centro del universo donde la tierra y demás cuerpos giraban alrededor de él; teoría del heliocentrismo. La cual fue luego validada por Galileo usando el recién inventado telescopio (Ponce, s.f). A Galileo se le atribuye como el primero en utilizar el telescopio para el estudio sistemático de los cielos. Asimismo, se le considera “el padre de la ciencia” ya que sus descubrimientos contribuyeron a ponerle fin a la ciega lealtad a la autoridad tanto eclesiástica como a otros pensadores entre ellos Aristoteles, en materia de ciencia. Además, de promulgar la separación de la ciencia, religión y filosofía (CSIC, 2017). 
+Luego en el siglo XVI, Nicolás Copérnico plantea el sol como el centro del universo donde la tierra y demás cuerpos giraban alrededor de él; teoría del heliocentrismo. La cual fue luego validada por Galileo usando el recién inventado telescopio (Ponce, s.f). A Galileo se le atribuye como el primero en utilizar el telescopio para el estudio sistemático de los cielos. Asimismo, se le considera “el padre de la ciencia” ya que sus descubrimientos contribuyeron a ponerle fin a la ciega lealtad a la autoridad tanto eclesiástica como a otros pensadores entre ellos Aristoteles, en materia de ciencia. Además, de promulgar la separación de la ciencia, religión y filosofía (CSIC, 2017).
 
-Posteriormente, Johannes Kepler (1571-1630) postula las leyes de Kepler, conocidas como la Ley de las Órbitas, la Ley de las Áreas y la Ley de los Periodos. A partir de estas, Newton llega a ciertas conclusiones importantes. Una de ellas es que los planetas y los satélites no están en equilibrio; hay una fuerza neta que actúa sobre ellos ya que se mueven en órbitas (1 Ley del Movimiento). La segunda es que todos los cuerpos se atraen unos a otros mediante la fuerza gravitatoria, por lo tanto las fuerzas centrales sobre los planetas son la atracción de la fuerza gravitatoria del sol (Bernard, s.f). 
+Posteriormente, Johannes Kepler (1571-1630) postula las leyes de Kepler, conocidas como la Ley de las Órbitas, la Ley de las Áreas y la Ley de los Periodos. A partir de estas, Newton llega a ciertas conclusiones importantes. Una de ellas es que los planetas y los satélites no están en equilibrio; hay una fuerza neta que actúa sobre ellos ya que se mueven en órbitas (1 Ley del Movimiento). La segunda es que todos los cuerpos se atraen unos a otros mediante la fuerza gravitatoria, por lo tanto las fuerzas centrales sobre los planetas son la atracción de la fuerza gravitatoria del sol (Bernard, s.f).
 
-Una vez son postuladas y aceptadas las leyes de la mecánica desarrolladas por Newton en 1687 a las cuales también se les conoce como Leyes de Newton, la comunidad científica aprueba la Teoría Heliocéntrica y las las Leyes de Kepler.  El modelo resultante de aplicar las leyes de Newton a un sistema con características similares al nuestro es lo que se conoce como el modelo Kepleriano (Ponce, s.f).
+Una vez son postuladas y aceptadas las leyes de la mecánica desarrolladas por Newton en 1687 a las cuales también se les conoce como Leyes de Newton, la comunidad científica aprueba la Teoría Heliocéntrica y las las Leyes de Kepler. El modelo resultante de aplicar las leyes de Newton a un sistema con características similares al nuestro es lo que se conoce como el modelo Kepleriano (Ponce, s.f).
 
-La mecánica clásica newtoniana permite describir el movimiento de los objetos mediante ecuaciones diferenciales. Estas ecuaciones basadas en las Leyes de Newton expresan como cambian las variables físicas como posición y velocidad en función del tiempo. Al resolver el sistema, se obtiene la trayectoria del mismo en cualquier instante. Por lo tanto, el comportamiento del sistema se reduce en calcular las funciones que satisfacen las ecuaciones. Ahora bien, encontrar las funciones mencionadas es sumamente complejo inclusive para modelos simples. Los intentos de encontrar este estas funciones se agrupan bajo el nombre del problema de los n cuerpos (Ponce, s.f).  
+La mecánica clásica newtoniana permite describir el movimiento de los objetos mediante ecuaciones diferenciales. Estas ecuaciones basadas en las Leyes de Newton expresan como cambian las variables físicas como posición y velocidad en función del tiempo. Al resolver el sistema, se obtiene la trayectoria del mismo en cualquier instante. Por lo tanto, el comportamiento del sistema se reduce en calcular las funciones que satisfacen las ecuaciones. Ahora bien, encontrar las funciones mencionadas es sumamente complejo inclusive para modelos simples. Los intentos de encontrar este estas funciones se agrupan bajo el nombre del problema de los n cuerpos (Ponce, s.f).
 
-Al tratarse de dos cuerpos, por ende el sistema que consiste en las órbitas de dos masas que interactúan a causa de la aceleración gravitacional, el sistema es “analiticamente soluble”. Esto dado que el sistema se puede expresar como una ecuación diferencial y la función del movimiento entre las dos masas se puede describir usando las leyes de movimiento de Newton junto con la fórmula de la fuerza gravitacional. Sin embargo, un sistema de tres o más masas interactuando exclusivamente por la aceleración gravitacional no es “analiticamente soluble” (Pérez et al., s.f). 
-
+Al tratarse de dos cuerpos, por ende el sistema que consiste en las órbitas de dos masas que interactúan a causa de la aceleración gravitacional, el sistema es “analiticamente soluble”. Esto dado que el sistema se puede expresar como una ecuación diferencial y la función del movimiento entre las dos masas se puede describir usando las leyes de movimiento de Newton junto con la fórmula de la fuerza gravitacional. Sin embargo, un sistema de tres o más masas interactuando exclusivamente por la aceleración gravitacional no es “analiticamente soluble” (Pérez et al., s.f).
 
 La conclusión de que no es posible encontrar un función en el caso de tres cuerpos fue desarrollada por Henri Poincaré. El determinó que en casos como el anterior la evolución del sistema es extremadamente caótica. Ya que, una pequeña perturbación en el estado inicial podría llevar eventualmente a un estado totalmente diferente. Por lo tanto, es imposible predecir el estado del sistema dado que los instrumentos de medición ni siquiera pueden detectar esa mínima variación (Pardo, 2022).
 
-
 Poincaré más bien propone un estudio más cualitativo de las órbitas cuando se trata de esta cantidad o mayor cantidad de masas. Es así, que se establece una nueva área en la matemática; sistemas dinámicos (Ponce, s.f).
-
-
-
