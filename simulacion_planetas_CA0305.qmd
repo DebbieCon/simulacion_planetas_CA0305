@@ -5,7 +5,6 @@ bibliography: references.bib
 csl: apa.csl
 ---
 
-```{=tex}
 \begin{center}
     {\Large\textbf{El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos}}\par 
     \vspace{0.15cm}
@@ -26,7 +25,7 @@ csl: apa.csl
     \noindent
     \rule{\linewidth}{0.5mm}
 \end{center}
-```
+
 # Introducción
 
 El movimiento de los cuerpos celestes ha despertado un profundo interés durante siglos, tanto para la comunidad física como matemática. De hecho, ha sido impulsor de revoluciones científicas y filosóficas a lo largo de la historia. En sus inicios, los grandes pensadores centraban sus ideas en el movimiento de los cuerpos del sistema solar.
@@ -89,10 +88,21 @@ La clase Simulacion_2D propone un método que junto con los módulos mencionados
 
 La clase Simulacion_3D propone un método similar, solo que considerando un plano con 3 dimensiones, pero siguiendo la misma dinámica que Simulacion_2D.
 
+# Análisis FODA
+
+En la siguiente tabla se comentan las fortalezas, oportunidades, debilidades y amenazas identificadas en el desarrollo actual del proyecto:
+
+| Fortalezas | Oportunidades | Debilidades | Amenazas |
+|------------------|------------------|------------------|------------------|
+| Código bien estructurado, dividido en módulos con propósitos claros y que interactúan correctamente entre sí. | En el módulo SeriesAproximar, existe la posibilidad de agregar polinomios adicionales para mejorar la precisión del modelo en periodos de tiempo más extensos, pero la viabilidad de esto debe analizarse con mayor profundidad más adelante. | El módulo SeriesAproximar debe usarse con periodos cortos, ya que al depender de ecuaciones diferenciales con retraso, la aproximación para intervalos de tiempo más grandes puede resultar en márgenes de error considerables. |  |
+| Métodos y procedimientos con amplio respaldo bibliográfico y ejemplos pasados que demuestran su funcionamiento. | Se puede investigar y experimentar sobre técnicas para reducir el porcentaje de error de los resultados obtenidos con el modelo respecto a datos reales. | Con los métodos actuales, el porcentaje de error en los vectores de posición para un sistema Tierra-Sol está entre 6% y 6,4%, que es considerable. |  |
+| En general, se cumplen los objetivos planteados en la metodología: simulación y animación de sistemas de n-cuerpos, así como aproximación para un escenario de dos cuerpos. |  | Los porcentajes de error en los vectores de velocidad son aún mayores y, al menos por el momento, se desconoce cómo mejorarlos. |  |
+| Se logró comparar los datos obtenidos mediante el modelo con datos reales, lo que permitió conocer su margen de error. |  |  |  |
+
 \newpage
 
 # Anexos
 
-Repositorio de GitHub : [https://github.com/DebbieCon/simulacion_planetas_CA0305/blob/main/simulacion_planetas_CA0305.qmd](https://github.com/DebbieCon/simulacion_planetas_CA0305/blob/main/simulacion_planetas_CA0305.qmd)
+Repositorio de GitHub : <https://github.com/DebbieCon/simulacion_planetas_CA0305/blob/main/simulacion_planetas_CA0305.qmd>
 
 # Referencias
