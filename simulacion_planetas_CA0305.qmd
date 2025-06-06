@@ -4,6 +4,7 @@ format: pdf
 bibliography: references.bib
 csl: apa.csl
 ---
+
 ```{=tex}
 \begin{center}
     {\Large\textbf{El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos}}\par 
@@ -46,7 +47,7 @@ Uno de los mayores quiebres en la teoría se produjo por Ptolomeo en el siglo II
 
 Luego en el siglo XVI, Nicolás Copérnico plantea el sol como el centro del universo donde la tierra y demás cuerpos giraban alrededor de él; teoría del heliocentrismo. La cual fue luego validada por Galileo usando el recién inventado telescopio [@Ponce2010]. A Galileo se le atribuye como el primero en utilizar el telescopio para el estudio sistemático de los cielos. Asimismo, se le considera “el padre de la ciencia” ya que sus descubrimientos contribuyeron a ponerle fin a la ciega lealtad a la autoridad tanto eclesiástica como a otros pensadores entre ellos Aristoteles, en materia de ciencia. Además, de promulgar la separación de la ciencia, religión y filosofía [@csic_galileo].
 
-Posteriormente, Johannes Kepler (1571-1630) postula las leyes de Kepler, conocidas como la Ley de las Órbitas, la Ley de las Áreas y la Ley de los Periodos. A partir de estas, Newton llega a ciertas conclusiones importantes. Una de ellas es que los planetas y los satélites no están en equilibrio; hay una fuerza neta que actúa sobre ellos ya que se mueven en órbitas (1 Ley del Movimiento). La segunda es que todos los cuerpos se atraen unos a otros mediante la fuerza gravitatoria, por lo tanto las fuerzas centrales sobre los planetas son la atracción de la fuerza gravitatoria del sol (Bernard, s.f).
+Posteriormente, Johannes Kepler (1571-1630) postula las leyes de Kepler, conocidas como la Ley de las Órbitas, la Ley de las Áreas y la Ley de los Periodos. A partir de estas, Newton llega a ciertas conclusiones importantes. Una de ellas es que los planetas y los satélites no están en equilibrio; hay una fuerza neta que actúa sobre ellos ya que se mueven en órbitas (1 Ley del Movimiento). La segunda es que todos los cuerpos se atraen unos a otros mediante la fuerza gravitatoria, por lo tanto las fuerzas centrales sobre los planetas son la atracción de la fuerza gravitatoria del sol [@ibero2025kepler].
 
 Una vez son postuladas y aceptadas las leyes de la mecánica desarrolladas por Newton en 1687 a las cuales también se les conoce como Leyes de Newton, la comunidad científica aprueba la Teoría Heliocéntrica y las las Leyes de Kepler. El modelo resultante de aplicar las leyes de Newton a un sistema con características similares al nuestro es lo que se conoce como el modelo Kepleriano [@Ponce2010].
 
@@ -74,8 +75,12 @@ Finalmente, se espera incluir una funcionalidad de animación dentro del código
 
 Como se mencionó en la sección de Metodología, para el problema de los dos cuerpos se decidió aproximar la solución de la órbita y a la vez simularla. Aunque la solución de este problema existe tiene muchas variantes según cuales suposiciones iniciales se tomen, entre ellas la conservación de energia, de momento angular, deformaciones en espacio tiempo, tiempo en actuar la fuerza gravitacional, entre otros [@helm2022approximate].
 
-Para la aproximación de los dos cuerpos, se tomó como guía el artículo publicado por @alhowaity2022twoBody
+Para la aproximación de los dos cuerpos, se tomó como guía el artículo publicado por @alhowaity2022twoBody donde utiliza series de potensias para aproximar la solución de las ecuaciones diferenciales, se sigue el mismo método propuesto en el artículo con los 10 coeficientes de la suma debido a que obtener los siguientes resulta complejo y computacionalmente más demandante. Así en la clase SeriesAproximar.py se obtienen los coeficientes y las aproximaciones para una cantidad arbitraria de días, además como se mencionó en la metodología se usarán rangos pequeños de días por el uso de las ecuaciones diferenciales con delays o retrasos.
 
+Con el polinomio ya calculado se crea un data frame en el que para cada día en el rango dado se genera una observación con un valor calculado de posición en las tres coordenadas y velocidad en las tres coordenadas.
+
+Con esto en el script de R denominado como LimpiezaDatos.R se 
 
 \newpage
+
 # Referencias
