@@ -40,23 +40,34 @@ class Simulacion2D(snc):
                 Animación de la simulación 2D, se usa para mostrar la animación en pantalla.
         '''
         return self._animacion  
-    
-    @animacion.setter
-    def animacion(self, value):
+
+    @property
+    def animacion(self):
         '''
-        Establece la animación de la simulación 2D.
+        Retorna la animación de la simulación en 2D.
 
         Parámetros
         ----------
-            value : FuncAnimation
-                Animación de la simulación 2D, se usa para mostrar la animación en pantalla.
+            
         Retorna
         -------
+            Función de animación matplotlib.animation.FuncAnimation
         '''
-        self._animacion = value
+        return self._animacion
     
+   
     def animar(self):
+        '''
+        Animación de la simulación en 2D, se usa matplotlib.animation.FuncAnimation
+        para crear una animación de las trayectorias de los cuerpos.
 
+        Parámetros
+        ----------
+            
+        Retorna
+        -------
+            
+        '''
         trayectorias = self._trayectorias
         n_cuerpos = len(trayectorias)
         
@@ -95,23 +106,28 @@ class Simulacion2D(snc):
                                   [trayectorias[i][frame][1]])
             return lineas + puntos
         
-        self._animacion = animation.FuncAnimation(
+        anim = animation.FuncAnimation(
             fig, actualizar, frames=len(trayectorias[0]), 
             init_func=unir, blit=True, interval=20
         )
-        plt.legend(loc='upper right') 
+        plt.legend(loc='upper right')  
         plt.tight_layout()
         plt.show()
 
-        def guardar_animacion(self, nombre_archivo: str):
-            '''
-            Guarda la animación en un archivo MP4.
+        self.animacion = anim  # Guardar la animación en el atributo
 
-            Parámetros
-            ----------
-                nombre_archivo : str
-                    Nombre del archivo donde se guardará la animación.
-            Retorna
-            -------
-            '''
-            self._animacion.save(nombre_archivo, writer='ffmpeg', fps=30)
+    def guardar_animacion(self, nombre_archivo : str):
+        '''
+        Guarda la animación en un archivo.
+
+        Parámetros
+        ----------
+            nombre_archivo : str
+                Nombre del archivo donde se guardará la animación.
+        Retorna
+        -------
+            
+        '''
+        self.animacion.save(nombre_archivo, writer='ffmpeg', fps=30)
+        print(f"Animación guardada como {nombre_archivo}")
+
