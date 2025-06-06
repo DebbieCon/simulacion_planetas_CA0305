@@ -24,3 +24,108 @@ class Simulacion2D(snc):
 
         '''
         super().__init__(cuerpos, G, h)
+        self._animacion = None
+
+    @property
+    def animacion(self):
+        '''
+        Retorna la animación de la simulación en 2D.
+
+        Parámetros
+        ----------
+            
+        Retorna
+        -------
+            Función de animación matplotlib.animation.FuncAnimation
+        '''
+        return self._animacion
+    
+    @animacion.setter
+    def animacion(self, value):
+        '''
+        Establece la animación de la simulación en 2D.
+
+        Parámetros
+        ----------
+            value : Función de animación matplotlib.animation.FuncAnimation
+                La función de animación a establecer.
+        Retorna
+        -------
+            
+        '''
+        self._animacion = value
+
+    def animar(self):
+        '''
+        Animación de la simulación en 2D, se usa matplotlib.animation.FuncAnimation
+        para crear una animación de las trayectorias de los cuerpos.
+
+        Parámetros
+        ----------
+            
+        Retorna
+        -------
+            
+        '''
+        trayectorias = self._trayectorias
+        n_cuerpos = len(trayectorias)
+        
+        fig, ax = plt.subplots(figsize=(10, 8))
+
+        all_coords = np.array([p for cuerpo in trayectorias for p in cuerpo])
+        max_range = np.max(np.abs(all_coords)) * 1.1  # Margen del 10%
+        plt.xlim(-max_range, max_range)
+        plt.ylim(-max_range, max_range)
+        ax.set_xlabel('X (m)')
+        ax.set_ylabel('Y (m)')
+        ax.set_title('Simulación 2D de N-Cuerpos')
+        ax.grid(True)
+        
+        # Líneas (trayectorias) y puntos (cuerpos)
+        lineas = [ax.plot([], [], '-', label=f'Cuerpo {i}')[0] 
+                  for i in range(n_cuerpos)]
+        puntos = [ax.plot([], [], 'o', markersize=8)[0] 
+                  for i in range(n_cuerpos)]
+        
+        def unir():
+            for linea, punto in zip(lineas, puntos):
+                linea.set_data([], [])
+                punto.set_data([], [])
+            return lineas + puntos
+        
+        def actualizar(frame):
+            for i, (linea, punto) in enumerate(zip(lineas, puntos)):
+                # Trayectoria hasta el frame actual
+                x = [p[0] for p in trayectorias[i][:frame+1]]
+                y = [p[1] for p in trayectorias[i][:frame+1]]
+                linea.set_data(x, y)
+                # Posición actual del cuerpo
+                if frame < len(trayectorias[i]):
+                    punto.set_data([trayectorias[i][frame][0]], 
+                                  [trayectorias[i][frame][1]])
+            return lineas + puntos
+        
+        anim = animation.FuncAnimation(
+            fig, actualizar, frames=len(trayectorias[0]), 
+            init_func=unir, blit=True, interval=20
+        )
+        plt.legend(loc='upper right')  
+        plt.tight_layout()
+        plt.show()
+
+        self.animacion = anim  # Guardar la animación en el atributo
+
+    def guardar_animacion(self, nombre_archivo : str):
+        '''
+        Guarda la animación en un archivo.
+
+        Parámetros
+        ----------
+            nombre_archivo : str
+                Nombre del archivo donde se guardará la animación.
+        Retorna
+        -------
+            
+        '''
+        self.animacion.save(nombre_archivo, writer='ffmpeg', fps=30)
+        print(f"Animación guardada como {nombre_archivo}")
