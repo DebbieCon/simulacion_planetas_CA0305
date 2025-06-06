@@ -67,7 +67,7 @@ Para la aproximación de los dos cuerpos, se tomó como guía el artículo publi
 
 Con el polinomio ya calculado se crea un data frame en el que para cada día en el rango dado se genera una observación con un valor calculado de posición en las tres coordenadas y velocidad en las tres coordenadas.
 
-Con esto en el script de R denominado como LimpiezaDatos.R se 
+Con esto en el script de R denominado como LimpiezaDatos.R se
 
 \newpage
 
