@@ -1,3 +1,8 @@
+install.packages("reticulate")
+install.packages("tidyverse")
+install.packages("lubridate")
+install.packages("dplyr")
+
 library(tidyverse)
 library(lubridate)
 library(dplyr)

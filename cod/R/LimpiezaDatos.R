@@ -1,5 +1,8 @@
+install.packages("tidyverse")
 library(tidyverse)
+install.packages("lubridate")
 library(lubridate)
+install.packages("dplyr")
 library(dplyr)
 
 # Cargar el csv
