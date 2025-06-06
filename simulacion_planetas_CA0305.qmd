@@ -63,3 +63,7 @@ Poincaré más bien propone un estudio más cualitativo de las órbitas cuando s
 Como se mencionó en la sección de Metodología, para el problema de los dos cuerpos se decidió aproximar la solución de la órbita y a la vez simularla. Aunque la solución de este problema existe tiene muchas variantes según cuales suposiciones iniciales se tomen, entre ellas la conservación de energia, de momento angular, deformaciones en espacio tiempo, tiempo en actuar la fuerza gravitacional, entre otros [@helm2022approximate].
 
 Para la aproximación de los dos cuerpos, se tomó como guía el artículo publicado por @alhowaity2022twoBody
+
+
+\newpage
+# Referencias
