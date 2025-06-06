@@ -58,6 +58,13 @@ La conclusión de que no es posible encontrar un función en el caso de tres cue
 
 Poincaré más bien propone un estudio más cualitativo de las órbitas cuando se trata de esta cantidad o mayor cantidad de masas. Es así, que se establece una nueva área en la matemática; sistemas dinámicos (Ponce, s.f).
 
+# Metodología
+
+Basado en lo expuesto en la introducción y la exploración, es pertinente plantear una metodología que permita darle una respuesta satisfactoria al problema planteado. En este caso, se pretende lograr tres objetivos principales: aproximación, simulación y animación. Como se explicó en la sección anterior, el problema de los dos cuerpos puede ser resuelto por completo de forma analítica, pero esto requeriría darle un enfoque al trabajo que no solo excede los alcances del curso, sino que se desvía de los aprendizajes esperados.
+
+Por esta razón, para el problema de los dos cuerpos, la implementación se limitará a realizar una aproximación de la órbita, preferiblemente en un sistema bien conocido como Tierra-Sol, o de manera más general, de un cuerpo cuya masa pueda expresarse en términos del otro objeto en el sistema. Para abordar esta tarea, se puede crear una clase dedicada que, basada en los procedimientos propuestos por Alhowaity (2022), contenga un método que permita aproximar la solución al problema de los dos cuerpos, tomando como parámetros: tiempo inicial, tiempo final y los vectores de posición y velocidad iniciales. No obstante, para obtener estos valores es necesario realizar varios pasos previos, como el cálculo de los coeficientes requeridos para las series de potencias que se definen en el artículo previamente citado. Como resultado final de los métodos de esta clase, se espera obtener una tabla con los valores en cada coordenada (x,y,z) de los vectores de posición y velocidad del objeto a lo largo de un lapso establecido. Cabe destacar que un beneficio de realizar una aproximación y no buscar una solución exacta, es que queda margen para comparar los datos generados por el modelo con cifras de bases de datos reales, para así evaluar su porcentaje de error; esto será explorado en la implementación. 
+
+
 # Implementación
 
 Como se mencionó en la sección de Metodología, para el problema de los dos cuerpos se decidió aproximar la solución de la órbita y a la vez simularla. Aunque la solución de este problema existe tiene muchas variantes según cuales suposiciones iniciales se tomen, entre ellas la conservación de energia, de momento angular, deformaciones en espacio tiempo, tiempo en actuar la fuerza gravitacional, entre otros (Helm, 2022).
