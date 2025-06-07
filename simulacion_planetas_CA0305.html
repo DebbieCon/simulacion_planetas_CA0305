@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos</title>
+<title>Tu título</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,6 +33,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="simulacion_planetas_CA0305_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="simulacion_planetas_CA0305_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="simulacion_planetas_CA0305_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="simulacion_planetas_CA0305_files/libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="simulacion_planetas_CA0305_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
 
 </head>
@@ -45,7 +49,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos</h1>
+<h1 class="title">Tu título</h1>
 </div>
 
 
@@ -62,29 +66,203 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-::: {align = ‘center’} {El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos}
-<p>{Proyecto del curso CA0305 - Herramientas de Ciencia de Datos II} \ </p>
-<pre><code>\normalsize
-\raggedleft
-Jose Andrey Prado Rojas C36174$^{*1}$, Debbie Con Ortega C32250$^{*2}$, Aarón Jesús Retana Castro C26400$^{*3}$ \par 
-\vspace{0.15cm}
-\centering
-
-\textit{$^*$Estudiantes de Ciencias Actuariales Pura, Escuela de Matemática, Universidad de Costa Rica. San José, Costa Rica. Junio, 2025}\par 
-\vspace{0.15cm}
-\raggedright
-
-\textit{$^1$\href{joseandrey.prado@ucr.ac.cr}{joseandrey.prado@ucr.ac.cr}, $^2$\href{debbie.con@ucr.ac.cr}{debbie.con@ucr.ac.cr}, $^3$\href{jesus.retana@ucr.ac.cr}{jesus.retana@ucr.ac.cr}}
-\noindent
-\rule{\linewidth}{0.5mm}</code></pre>
-<p>:::</p>
-<section id="introducción" class="level2">
-<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
 <p>El movimiento de los cuerpos celestes ha despertado un profundo interés durante siglos, tanto para la comunidad física como matemática. De hecho, ha sido impulsor de revoluciones científicas y filosóficas a lo largo de la historia. En sus inicios, los grandes pensadores centraban sus ideas en el movimiento de los cuerpos del sistema solar.</p>
-<p>A lo largo del tiempo la discusión sobre el movimiento de los cuerpos celestes ha persistido, dando lugar a una variedad de teorías que en ocasiones se han mezclado y coexistido entre ellas. Desde la Teoría Geocéntrica formulada por Aristóteles y desarrollada por Ptolomeo, hasta la Teoría Heliocentrista propuesta por Nicolás Copérnico en el siglo XVI y posteriormente confirmada por Galileo Galilei. Finalmente, la comunidad científica acepta el modelo Kepleriano que agrupa el heliocentrismo, las leyes de Kepler y las leyes de la mecánica establecidas por Newton (Ponce, s.f).</p>
-<p>El problema de los dos cuerpos; es decir, el movimiento de dos masas que interactúan por la aceleración gravitacional puede ser descrita como una función de tiempo y es analiticamente soluble. Gracias a la mecánica clásica Newtoniana es posible describir el movimiento del sistema como una ecuación diferencial por tanto el problema se reduce a calcular las funciones que satisfacen estas ecuaciones (Pérez et al., s.f).</p>
-<p>Este problema es de gran importancia en astronomía, mecánica orbital, dinámica galáctica, formación estelar, así como en la determinación de trayectorias óptimas para misiones de naves espaciales (Perezagua, 2022).</p>
-<p>Sin embargo, un sistema mayor a dos cuerpos no es analiticamente soluble por tanto no existe una solución explícita del sistema de ecuaciones. En el presente trabajo, se resolverá y simulará la trayectoria en dos cuerpos. Y además, en el caso tres cuerpos se realizará una aproximación con el método de Runge Kutta.</p>
+<p>A lo largo del tiempo la discusión sobre el movimiento de los cuerpos celestes ha persistido, dando lugar a una variedad de teorías que en ocasiones se han mezclado y coexistido entre ellas. Desde la Teoría Geocéntrica formulada por Aristóteles y desarrollada por Ptolomeo, hasta la Teoría Heliocéntrica propuesta por Nicolás Copérnico en el siglo XVI y posteriormente confirmada por Galileo Galilei. Finalmente, la comunidad científica acepta el modelo Kepleriano que agrupa el heliocentrismo, las leyes de Kepler y las leyes de la mecánica establecidas por Newton <span class="citation" data-cites="Ponce2010">[@Ponce2010]</span>.</p>
+<p>El problema de los dos cuerpos; es decir, el movimiento de dos masas que interactúan por la aceleración gravitacional puede ser descrita como una función de tiempo y es analíticamente soluble. Gracias a la mecánica clásica Newtoniana es posible describir el movimiento del sistema como una ecuación diferencial por tanto el problema se reduce a calcular las funciones que satisfacen estas ecuaciones <span class="citation" data-cites="Guzman2025">[@Guzman2025]</span>.</p>
+<p>Este problema es de gran importancia en astronomía, mecánica orbital, dinámica galáctica, formación estelar, así como en la determinación de trayectorias óptimas para misiones de naves espaciales <span class="citation" data-cites="perezagua2022trescuerpos">[@perezagua2022trescuerpos]</span>.</p>
+<p>Sin embargo, un sistema mayor a dos cuerpos no es analíticamente soluble por tanto no existe una solución explícita del sistema de ecuaciones. En el presente trabajo, se resolverá y simulará la trayectoria en dos cuerpos. Y además, en el caso tres cuerpos se realizará una aproximación con el método de Runge Kutta.</p>
+</section>
+<section id="exploración" class="level1">
+<h1>Exploración</h1>
+<p>El ser humano desde el inicio de los tiempos ha presentado cierta fascinación con el espacio. Desde las más antiguas civilizaciones el ser humano ha dedicado tiempo y esfuerzo en entender el movimiento de los cuerpos celestes desde una perspectiva filosófica, espiritual y científica. Primeramente, el interés de estas civilizaciones giraba en torno a las estrellas, lo que probó ser fundamental con el advenimiento de la navegación <span class="citation" data-cites="Ponce2010">[@Ponce2010]</span>.</p>
+<p>Uno de los mayores quiebres en la teoría se produjo por Ptolomeo en el siglo II d.C, quien propuso que la Tierra ocupaba el centro del universo y los demás cuerpos giraban en órbitas alrededor de ella es decir, un modelo geocéntrico. Claramente, apoyándose con la teoría de Aristóteles; Teoría del geocentrismo. A pesar de no asemejarse a la realidad que conocemos probó ser bastante preciso en sus cálculos a la hora de predecir fenómenos astronómicos <span class="citation" data-cites="cortes2021aproximacion">[@cortes2021aproximacion]</span>.</p>
+<p>Luego en el siglo XVI, Nicolás Copérnico plantea el Sol como el centro del universo, donde la tierra y demás cuerpos giraban alrededor de él; conocido como la teoría del heliocentrismo. La cual fue luego validada por Galileo usando el recién inventado telescopio <span class="citation" data-cites="Ponce2010">[@Ponce2010]</span>. A Galileo se le atribuye como el primero en utilizar el telescopio para el estudio sistemático de los cielos. Asimismo, se le considera “el padre de la ciencia” ya que sus descubrimientos contribuyeron a ponerle fin a la ciega lealtad a la autoridad tanto eclesiástica como a otros pensadores entre ellos Aristóteles, en materia de ciencia. Además, de promulgar la separación de la ciencia, religión y filosofía <span class="citation" data-cites="csic_galileo">[@csic_galileo]</span>.</p>
+<p>Posteriormente, Johannes Kepler (1571-1630) postula las leyes de Kepler, conocidas como la Ley de las Órbitas, la Ley de las Áreas y la Ley de los Periodos. A partir de estas, Newton llega a ciertas conclusiones importantes. Una de ellas es que los planetas y los satélites no están en equilibrio; hay una fuerza neta que actúa sobre ellos ya que se mueven en órbitas (1era Ley del Movimiento). La segunda es que todos los cuerpos se atraen unos a otros mediante la fuerza gravitatoria, por lo tanto las fuerzas centrales sobre los planetas en el Sistema Solar es la atracción de la fuerza gravitatoria del Sol <span class="citation" data-cites="ibero2025kepler">[@ibero2025kepler]</span>.</p>
+<p>Una vez que son postuladas y aceptadas las leyes de la mecánica desarrolladas por Newton en 1687, a las cuales también se les conoce como Leyes de Newton, la comunidad científica aprueba la Teoría Heliocéntrica y las las Leyes de Kepler. El modelo resultante de aplicar las leyes de Newton a un sistema con características similares al nuestro es lo que se conoce como el modelo Kepleriano <span class="citation" data-cites="Ponce2010">[@Ponce2010]</span>.</p>
+<p>La mecánica clásica newtoniana permite describir el movimiento de los objetos mediante ecuaciones diferenciales. Estas ecuaciones basadas en las Leyes de Newton expresan cómo cambian las variables físicas como posición y velocidad en función del tiempo. Al resolver el sistema, se obtiene la trayectoria del mismo en cualquier instante. Por lo tanto, el comportamiento del sistema se reduce en calcular las funciones que satisfacen las ecuaciones. Ahora bien, encontrar las funciones mencionadas es sumamente complejo, inclusive para modelos simples. Los intentos de encontrar estas funciones se agrupan bajo el nombre del problema de los n cuerpos <span class="citation" data-cites="Ponce2010">[@Ponce2010]</span>.</p>
+<p>Al tratarse de dos cuerpos, el sistema que consiste en las órbitas de dos masas que interactúan a causa de la aceleración gravitacional, el sistema es “analíticamente soluble”. Esto dado que el sistema se puede expresar como una ecuación diferencial y la función del movimiento entre las dos masas se puede describir usando las leyes de movimiento de Newton, junto con la fórmula de la fuerza gravitacional. Sin embargo, un sistema de tres o más masas interactuando exclusivamente por la aceleración gravitacional no es “analíticamente soluble” <span class="citation" data-cites="Guzman2025">[@Guzman2025]</span>.</p>
+<p>La conclusión de que no es posible encontrar un función en el caso de tres cuerpos fue desarrollada por Henri Poincaré. Él determinó que en casos como el anterior la evolución del sistema es extremadamente caótica. Ya que, una pequeña perturbación en el estado inicial podría llevar eventualmente a un estado totalmente diferente. Por lo tanto, es imposible predecir el estado del sistema dado que los instrumentos de medición ni siquiera pueden detectar esa mínima variación <span class="citation" data-cites="pardo2022mecanica">[@pardo2022mecanica]</span>.</p>
+<p>Poincaré más bien propone un estudio más cualitativo de las órbitas cuando se trata de esta cantidad o mayor cantidad de masas. Es así, que se establece una nueva área en la matemática; sistemas dinámicos <span class="citation" data-cites="Ponce2010">[@Ponce2010]</span>.</p>
+</section>
+<section id="metodología" class="level1">
+<h1>Metodología</h1>
+<p>Basado en lo expuesto en la introducción y la exploración, es pertinente plantear una metodología que permita darle una respuesta satisfactoria al problema planteado. En este caso, se pretende lograr tres objetivos principales: aproximación, simulación y animación. Como se explicó en la sección anterior, el problema de los dos cuerpos puede ser resuelto por completo de forma analítica, pero esto requeriría darle un enfoque al trabajo que no solo excede los alcances del curso, sino que se desvía de los aprendizajes esperados.</p>
+<p>Por esta razón, para el problema de los dos cuerpos, la implementación se limitará a realizar una aproximación de la órbita, preferiblemente en un sistema bien conocido como Tierra-Sol, o de manera más general, de un cuerpo cuya masa pueda expresarse en términos del otro objeto en el sistema. Para abordar esta tarea, se puede crear una clase dedicada que, basada en los procedimientos propuestos por Alhowaity (2022), contenga un método que permita aproximar la solución al problema de los dos cuerpos, tomando como parámetros: tiempo inicial, tiempo final y los vectores de posición y velocidad iniciales. No obstante, para obtener estos valores es necesario realizar varios pasos previos, como el cálculo de los coeficientes requeridos para las series de potencias que se definen en el artículo previamente citado. Como resultado final de los métodos de esta clase, se espera obtener una tabla con los valores en cada coordenada (x,y,z) de los vectores de posición y velocidad del objeto a lo largo de un lapso establecido. Cabe destacar que un beneficio de realizar una aproximación y no buscar una solución exacta, es que queda margen para comparar los datos generados por el modelo con cifras de bases de datos reales, para así evaluar su porcentaje de error; esto será explorado en la implementación.</p>
+<p>El segundo aspecto que se espera cubrir dentro de la implementación es la simulación. El primer paso debe ser la creación de una clase “Cuerpo”, que pueda representar un planeta, una estrella o cualquier otro objeto astronómico significativo, por lo que sus atributos deben necesariamente incluir su posición inicial (en tres dimensiones), su velocidad y su masa. A partir de esta primera clase madre, se puede desarrollar otra clase que se encargue de la simulación propiamente, para lo cual debería tener como atributo la lista de cuerpos (creados con la clase anterior) que van a interactuar y el tiempo que va a transcurrir en la simulación.</p>
+<p>Ahora, para obtener los valores de posición y velocidad de los cuerpos a través del tiempo, se propone utilizar el Método de Runge-Kutta de cuarto orden (RK4), un método iterativo para la aproximación de soluciones a ecuaciones diferenciales. Este es relevante porque en el problema de los n-cuerpos, la posición y velocidad de cada cuerpo cambian con el tiempo por la influencia de las fuerzas gravitacionales de los demás, lo cual puede describirse mediante ecuaciones diferenciales. No solo ofrece soluciones para cada intervalo de tiempo establecido, sino que además utiliza un promedio ponderado de cuatro estimaciones de la pendiente de la solución para mejorar la precisión. Por lo tanto, es indispensable que la clase “Simulación” incorpore un método capaz de ejecutar el RK4 considerando varios cuerpos, para lo cual también es necesario un método auxiliar que calcule las aceleraciones y otro que actualice las posiciones de los cuerpos tras cada estimación.</p>
+<p>Finalmente, se espera incluir una funcionalidad de animación dentro del código. Hasta el momento, los módulos anteriores solo muestran resultados numéricos o almacenan las operaciones internamente, pero para representar más intuitivamente su comportamiento se considera oportuno agregar módulos con la capacidad de mostrar gráficamente las trayectorias de los cuerpos en dos y tres dimensiones. Para esto, se incluirá una clase “Simulación2D” que herede de “Simulación”, la cual obtendrá los datos de las posiciones en el tiempo para dibujar las trayectorias con el uso de paquetes de graficación y animación como matplotlib.pyplot y matplotlib.animation. El principal método tendrá que definir de manera dinámica el rango de los ejes para garantizar la correcta visualización de todos los cuerpos, crear puntos que representan los cuerpos, líneas para trazar las trayectorias y actualizar periódicamente el gráfico mostrado para cubrir la órbita completa (o al menos en el periodo que se defina). De forma similar para la visualización en tres dimensiones, se construirá una clase “Simulación3D” con un funcionamiento análogo a su contraparte bidimensional, solo que con una coordenada adicional.</p>
+</section>
+<section id="implementación" class="level1">
+<h1>Implementación</h1>
+<p>Como se mencionó en la sección de Metodología, para el problema de los dos cuerpos se decidió aproximar la solución de la órbita y a la vez simularla. Aunque la solución de este problema existe tiene muchas variantes según cuales suposiciones iniciales se tomen, entre ellas la conservación de energía, de momento angular, deformaciones en espacio-tiempo, tiempo en actuar la fuerza gravitacional, entre otros <span class="citation" data-cites="helm2022approximate">[@helm2022approximate]</span>.</p>
+<p>Para la aproximación de los dos cuerpos, se tomó como guía el artículo publicado por <span class="citation" data-cites="alhowaity2022twoBody">@alhowaity2022twoBody</span> donde utiliza series de potencias para aproximar la solución de las ecuaciones diferenciales. Se sigue el mismo método propuesto en el artículo con los 10 coeficientes de la suma debido a que obtener los siguientes resulta complejo y computacionalmente más demandante. Así en la clase SeriesAproximar.py se obtienen los coeficientes y las aproximaciones para una cantidad arbitraria de días, además como se mencionó en la metodología se usarán rangos pequeños de días por el uso de las ecuaciones diferenciales con delays o retrasos.</p>
+<p>Con el polinomio ya calculado se crea un data frame en el que para cada día en el rango dado se genera una observación con un valor calculado de posición en las tres coordenadas y velocidad en las tres coordenadas. Con esto en el script de R denominado como LimpiezaDatos.R se carga la base de datos descargada en la página de la NASA denominada <a href="https://ssd.jpl.nasa.gov/horizons/app.html#/">Jet Propulsion Laboratory</a> donde se obtuvieron los datos de posición y velocidad para la Tierra tomando como observador el Sol, comenzando el día 01-04-2025 y terminando el 05-06-2025. El módulo de R proovee un breve código para leer la tabla y darle formato a la columna de fecha, además de seleccionar las columnas importantes. Es ahí donde en el script AnalisisDatos.R se toma esta base llamando el script LimpiezaDatos.R y la base de datos calculada llamando el script main.py, uniendo ambas tablas, calculando la norma de los vectores de posición y velocidad y generando los porcentajes de error.</p>
+<div class="cell">
+<div id="tbl-comparacion" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-comparacion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="table-responsive">
+<table class="table table-striped table-hover do-not-create-environment cell table-sm small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: center; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px; font-weight: bold;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Posicion (UA)
+</div></th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px; font-weight: bold;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Velocidad (UA/dia)
+</div></th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">Fecha</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">Real</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">Calculada</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">Error</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">Real</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">Calculada</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">Error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">2025-04-01</td>
+<td style="text-align: center;">0.99922</td>
+<td style="text-align: center;">0.93917</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">6.01%</td>
+<td style="text-align: center;">0.01722</td>
+<td style="text-align: center;">0.35912</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">1985.25%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">2025-04-02</td>
+<td style="text-align: center;">0.99951</td>
+<td style="text-align: center;">0.93917</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">6.04%</td>
+<td style="text-align: center;">0.01722</td>
+<td style="text-align: center;">0.35912</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">1986.00%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">2025-04-03</td>
+<td style="text-align: center;">0.99979</td>
+<td style="text-align: center;">0.93917</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">6.06%</td>
+<td style="text-align: center;">0.01721</td>
+<td style="text-align: center;">0.35912</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">1986.76%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">2025-04-04</td>
+<td style="text-align: center;">1.00007</td>
+<td style="text-align: center;">0.93917</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">6.09%</td>
+<td style="text-align: center;">0.01720</td>
+<td style="text-align: center;">0.35912</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">1987.55%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">2025-04-05</td>
+<td style="text-align: center;">1.00035</td>
+<td style="text-align: center;">0.93917</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">6.12%</td>
+<td style="text-align: center;">0.01720</td>
+<td style="text-align: center;">0.35912</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">1988.34%</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: center; padding: 0;"><span style="font-style: italic;">Elaboración propia con datos reales de:</span> <sup></sup> NASA/JPL Horizons System</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tfoot>
+
+</table>
+</div>
+
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-comparacion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;1: Comparacion entre valores calculados y reales: Posicion y velocidad de la Tierra con respecto al Sol
+</figcaption>
+</figure>
+</div>
+</div>
+<p>En la anterior tabla se puede apreciar un pequeño análisis en el porcentaje de error tanto de la posición del cuerpo como de la velocidad, los detalles de este serán mencionados en el FODA.</p>
+<p>Posteriormente con la clase Cuerpo.py mencionada en la metodología se instanciaron las características del objeto astronómico, posición inicial, velocidad inicial y masa, note que tanto el vector de posición como de velocidad acepta tanto de 2 o 3 coordenadas. Una vez instanciados los objetos tipo Cuerpo, la clase Simulacion_N_Cuerpos.py recibe una lista de ellos para los cuales calcula sus trayectorias aplicando el método de Runge Kutta de orden 4, esto lo hace con un tiempo de paso definido y recalculando su aceleración y posición con los métodos auxiliares programados en la misma clase. Con esto, el último método llamado simular genera un bucle con el tiempo de pasos definidos para crear un ‘gif’ con la simulación. En este apartado, es importante considerar que si se coloca un parámetro ‘h’ muy alto puede que en la simulación no se aprecie, o la aceleración y trayectorias no sean las esperadas. Esto se debe a que con un paso muy grande en el método de Runge Kutta el cálculo del nuevo punto por el que pasa el cuerpo será muy lejos del anterior punto demarcado, haciendo que el factor de la distancia entre cuerpos sea insignificante en el cálculo.</p>
+<p>La clase Simulacion_2D.py propone un método que junto con los módulos mencionados en la metodología (matplotlib.pyplot y matplotlib.animate) es capaz de crear ejes dinámicos, que se ajustan según las posiciones iniciales de los cuerpos y una animación donde se aprecie el movimiento de los planetas. A su vez se tiene un método para guardar la animación como un gif.</p>
+<p>La clase Simulacion_3D.py propone un método similar, solo que considerando un plano con 3 dimensiones, pero siguiendo la misma dinámica que Simulacion_2D.</p>
+</section>
+<section id="análisis-foda" class="level1">
+<h1>Análisis FODA</h1>
+<p>En la siguiente tabla se comentan las fortalezas, oportunidades, debilidades y amenazas identificadas en el desarrollo actual del proyecto:</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fortalezas</th>
+<th>Oportunidades</th>
+<th>Debilidades</th>
+<th>Amenazas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Código bien estructurado, dividido en módulos con propósitos claros y que interactúan correctamente entre sí.</td>
+<td>En el módulo SeriesAproximar, existe la posibilidad de agregar polinomios adicionales para mejorar la precisión del modelo en periodos de tiempo más extensos, pero la viabilidad de esto debe analizarse con mayor profundidad más adelante.</td>
+<td>El módulo SeriesAproximar debe usarse con periodos cortos, ya que al depender de ecuaciones diferenciales con retraso, la aproximación para intervalos de tiempo más grandes puede resultar en márgenes de error considerables.</td>
+<td>Al ser un sistema caótico, obtener datos reales con suficiente precisión para comparar simulaciones de más de dos cuerpos es complejo. lo que puede limitar la evaluación objetiva del modelo.</td>
+</tr>
+<tr class="even">
+<td>Métodos y procedimientos con amplio respaldo bibliográfico y ejemplos pasados que demuestran su funcionamiento.</td>
+<td>Se puede investigar y experimentar sobre técnicas para reducir el porcentaje de error de los resultados obtenidos con el modelo respecto a datos reales.</td>
+<td>Con los métodos actuales, el porcentaje de error en los vectores de posición para un sistema Tierra-Sol está entre 6% y 6,4%, que es considerable.</td>
+<td>El modelo es más simple y menos preciso que otras alternativas profesionales como REBOUND, que puede admitir muchos más parámetros iniciales, pero al costo de mayor exigencia computacional.</td>
+</tr>
+<tr class="odd">
+<td>En general, se cumplen los objetivos planteados en la metodología: simulación y animación de sistemas de n-cuerpos, así como aproximación para un escenario de dos cuerpos.</td>
+<td></td>
+<td>Los porcentajes de error en los vectores de velocidad son aún mayores y, al menos por el momento, se desconoce cómo mejorarlos.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Se logró comparar los datos obtenidos mediante el modelo con datos reales, lo que permitió conocer su margen de error.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="anexos" class="level1">
+<h1>Anexos</h1>
+<p>Repositorio de GitHub : <a href="https://github.com/DebbieCon/simulacion_planetas_CA0305/blob/main/simulacion_planetas_CA0305.qmd" class="uri">https://github.com/DebbieCon/simulacion_planetas_CA0305/blob/main/simulacion_planetas_CA0305.qmd</a></p>
+</section>
+<section id="referencias" class="level1">
+<h1>Referencias</h1>
 </section>
 
 </main>
@@ -124,7 +302,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -132,12 +321,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiado");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copiado");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
@@ -156,29 +345,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -186,7 +353,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

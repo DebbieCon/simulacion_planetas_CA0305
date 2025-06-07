@@ -1,8 +1,19 @@
 ---
-#title: "El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos"
-format: pdf 
+lang: es
+format:
+  pdf:
+    tbl-cap-location: bottom
+    fig-cap-location: bottom
+    citations-hover: true
+    footnotes-hover: true
+crossref:
+  tbl-title: "Tabla"
+  tbl-prefix: "Tabla"
+  fig-title: "Figura"
+  fig-prefix: "Figura"
 bibliography: references.bib
 csl: apa.csl
+cite-method: citeproc
 ---
 
 ```{=tex}
@@ -79,11 +90,53 @@ Para la aproximación de los dos cuerpos, se tomó como guía el artículo publi
 
 Con el polinomio ya calculado se crea un data frame en el que para cada día en el rango dado se genera una observación con un valor calculado de posición en las tres coordenadas y velocidad en las tres coordenadas. Con esto en el script de R denominado como LimpiezaDatos.R se carga la base de datos descargada en la página de la NASA denominada [Jet Propulsion Laboratory](https://ssd.jpl.nasa.gov/horizons/app.html#/) donde se obtuvieron los datos de posición y velocidad para la Tierra tomando como observador el Sol, comenzando el día 01-04-2025 y terminando el 05-06-2025. El módulo de R proovee un breve código para leer la tabla y darle formato a la columna de fecha, además de seleccionar las columnas importantes. Es ahí donde en el script AnalisisDatos.R se toma esta base llamando el script LimpiezaDatos.R y la base de datos calculada llamando el script main.py, uniendo ambas tablas, calculando la norma de los vectores de posición y velocidad y generando los porcentajes de error.
 
-```{r}
-library(reticulate)
-source("cod/R/AnalisisDatos.R")
-```
 
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: tbl-comparacion
+#| tbl-cap: "Comparacion entre valores calculados y reales: Posicion y velocidad de la Tierra con respecto al Sol"
+
+library(kableExtra)
+library(dplyr)
+
+df_analisis <- read.csv("data/df_analisis.csv")
+
+# Formatear números a 5 decimales y errores como porcentaje
+df_analisis <- df_analisis %>%
+  mutate(
+    # Redondear valores numéricos a 5 decimales
+    across(where(is.numeric) & !contains("error"), ~ round(.x, 5)),
+    # Formatear errores como porcentaje
+    error_pos = sprintf("%.2f%%", error_pos),
+    error_vel = sprintf("%.2f%%", error_vel)
+  )
+
+kable(head(df_analisis, 5), 
+      align = 'c',
+      col.names = c("Fecha", "Real", "Calculada", "Error",
+                    "Real", "Calculada", "Error")) %>%
+  kable_styling(
+    position = "center",
+    bootstrap_options = c("striped", "hover", "responsive"),
+    full_width = FALSE,
+    font_size = 12
+  ) %>%
+  add_header_above(c(" " = 1, 
+                    "Posicion (UA)" = 3,
+                    "Velocidad (UA/dia)" = 3),
+                  bold = TRUE) %>%
+  row_spec(0, bold = TRUE, background = "#f8f9fa") %>%
+  column_spec(1, bold = TRUE) %>%
+  column_spec(c(4,7), 
+              background = "#f8f9fa") %>%
+  footnote(
+    general = "NASA/JPL Horizons System",
+    general_title = "Elaboración propia con datos reales de:",
+    footnote_as_chunk = TRUE
+  )
+```
 
 En la anterior tabla se puede apreciar un pequeño análisis en el porcentaje de error tanto de la posición del cuerpo como de la velocidad, los detalles de este serán mencionados en el FODA.
 
