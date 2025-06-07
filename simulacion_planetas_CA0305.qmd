@@ -163,4 +163,26 @@ En la siguiente tabla se comentan las fortalezas, oportunidades, debilidades y a
 
 Repositorio de GitHub : <https://github.com/DebbieCon/simulacion_planetas_CA0305/blob/main/simulacion_planetas_CA0305.qmd>
 
+![Simulación 2D - 1 - 1](figs/sim1/1.png){width="50%"}
+![Simulación 2D - 1 - 2](figs/sim1/2.png){width="50%"}
+![Simulación 2D - 1 - 3](figs/sim1/3.png){width="50%"}
+![Simulación 2D - 1 - 4](figs/sim1/4.png){width="50%"}
+
+**Figura 1:** Simulación 2D de un sistema conformado por una estrella quieta masiva, 2 planetas y un cometa.
+
+![Simulación 2D - 2 - 1](figs/sim2/1.png){width="50%"}
+![Simulación 2D - 2 - 2](figs/sim2/2.png){width="50%"}
+![Simulación 2D - 2 - 3](figs/sim2/3.png){width="50%"}
+![Simulación 2D - 2 - 4](figs/sim2/4.png){width="50%"}
+
+**Figura 2:** Simulación 2D de un sistema conformado por el sol, tierra, marte y un cuerpo intruso.
+
+
+![Simulación 3D - 1](figs/sim3/1.png){width="50%"}
+![Simulación 3D - 2](figs/sim3/2.png){width="50%"}
+![Simulación 3D - 3](figs/sim3/3.png){width="50%"}
+![Simulación 3D - 4](figs/sim3/4.png){width="50%"}
+
+**Figura 3:** Simulación 3D de un sistema conformado por una estrella quieta, dos planetas y dos cometas.
+
 # Referencias
