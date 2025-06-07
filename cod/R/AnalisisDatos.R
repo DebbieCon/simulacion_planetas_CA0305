@@ -1,17 +1,17 @@
 library(tidyverse)
 library(lubridate)
 library(dplyr)
-library(reticulate)
+library(kableExtra)
 
-source_python("cod\\py\\main.py")
+df <- read.csv("data\\resultados.csv")
 
 source("cod\\R\\LimpiezaDatos.R")
 
 fecha.inicial <- ymd("2025-04-01") # Cambiar según el caso
-dias <- 020 # Cambiar según el caso
-df$`t (días)` <- fecha.inicial + days(dias)
-names(df)[names(df) == "t (días)"] <- "fecha"
+df$t..días. <- fecha.inicial + days(0:(nrow(df)-1))
+names(df)[names(df) == "t..días."] <- "fecha"
 names(datos.reales)[names(datos.reales) == "Calendar.Date..TDB."] <- "fecha"
+
 
 df_analisis <- left_join(df, datos.reales, by = "fecha")
 
@@ -37,9 +37,13 @@ df_analisis <- df_analisis %>%
 df_analisis <- df_analisis %>%
     select(fecha, r_real, r_calc, error_r, v_real, v_calc, error_v)    
 
+
+
+names(df_analisis) <- c("fecha", "pos_real", "pos_cal", "error_pos", "vel_real", "vel_calc", "error_vel")
 # Guardar el dataframe final en un archivo CSV
-write.csv(df_analisis, "data\\df_analisis.csv", row.names = FALSE)
+ write.csv(df_analisis, "data\\df_analisis.csv", row.names = FALSE)
 # Mostrar el dataframe final
-print(head(df_analisis,5))
+
+
 
 

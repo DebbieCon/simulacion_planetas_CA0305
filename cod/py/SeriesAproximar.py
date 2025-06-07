@@ -238,5 +238,7 @@ class SeriesAproximar:
             })
         df = pd.DataFrame(datos)
 
+        df.to_csv('data\\resultados.csv', index=False)
+
         return df
     

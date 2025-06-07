@@ -1,10 +1,22 @@
 ---
-#title: "El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos"
-format: pdf 
+lang: es
+format:
+  pdf:
+    tbl-cap-location: bottom
+    fig-cap-location: bottom
+    citations-hover: true
+    footnotes-hover: true
+crossref:
+  tbl-title: "Tabla"
+  tbl-prefix: "Tabla"
+  fig-title: "Figura"
+  fig-prefix: "Figura"
 bibliography: references.bib
 csl: apa.csl
+cite-method: citeproc
 ---
 
+```{=tex}
 \begin{center}
     {\Large\textbf{El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos}}\par 
     \vspace{0.15cm}
@@ -25,7 +37,7 @@ csl: apa.csl
     \noindent
     \rule{\linewidth}{0.5mm}
 \end{center}
-
+```
 # Introducción
 
 El movimiento de los cuerpos celestes ha despertado un profundo interés durante siglos, tanto para la comunidad física como matemática. De hecho, ha sido impulsor de revoluciones científicas y filosóficas a lo largo de la historia. En sus inicios, los grandes pensadores centraban sus ideas en el movimiento de los cuerpos del sistema solar.
@@ -52,9 +64,7 @@ Una vez que son postuladas y aceptadas las leyes de la mecánica desarrolladas p
 
 La mecánica clásica newtoniana permite describir el movimiento de los objetos mediante ecuaciones diferenciales. Estas ecuaciones basadas en las Leyes de Newton expresan cómo cambian las variables físicas como posición y velocidad en función del tiempo. Al resolver el sistema, se obtiene la trayectoria del mismo en cualquier instante. Por lo tanto, el comportamiento del sistema se reduce en calcular las funciones que satisfacen las ecuaciones. Ahora bien, encontrar las funciones mencionadas es sumamente complejo, inclusive para modelos simples. Los intentos de encontrar estas funciones se agrupan bajo el nombre del problema de los n cuerpos [@Ponce2010].
 
-Al tratarse de dos cuerpos, el sistema que consiste en las órbitas de dos masas que interactúan a causa de la aceleración gravitacional, el sistema es “analíticamente soluble”. Esto dado que el sistema se puede expresar como una ecuación diferencial y la función del movimiento entre las dos masas se puede describir usando las leyes de movimiento de Newton, junto con la fórmula de la fuerza gravitacional. Sin embargo, un sistema de tres o más masas interactuando exclusivamente por la aceleración gravitacional no es “analíticamente soluble” [@Guzman2025].
-
-La conclusión de que no es posible encontrar un función en el caso de tres cuerpos fue desarrollada por Henri Poincaré. Él determinó que en casos como el anterior la evolución del sistema es extremadamente caótica. Ya que, una pequeña perturbación en el estado inicial podría llevar eventualmente a un estado totalmente diferente. Por lo tanto, es imposible predecir el estado del sistema dado que los instrumentos de medición ni siquiera pueden detectar esa mínima variación [@pardo2022mecanica].
+Al tratarse de dos cuerpos, si es posible encontrar una solución al sistema donde se implementa a su vez la fórmula de la fuerza gravitacional para lograrlo. Sin embargo, para un sistema de tres o más cuerpos esto no es posible por tanto no es “analiticamente soluble” [@Guzman2025]. La conclusión de que no es posible encontrar un función en el caso de tres cuerpos fue desarrollada por Henri Poincaré. Él determinó que en casos como el anterior la evolución del sistema es extremadamente caótica. Ya que, una pequeña perturbación en el estado inicial podría llevar eventualmente a un estado totalmente diferente. Por lo tanto, es imposible predecir el estado del sistema dado que los instrumentos de medición ni siquiera pueden detectar esa mínima variación [@pardo2022mecanica].
 
 Poincaré más bien propone un estudio más cualitativo de las órbitas cuando se trata de esta cantidad o mayor cantidad de masas. Es así, que se establece una nueva área en la matemática; sistemas dinámicos [@Ponce2010].
 
@@ -78,15 +88,61 @@ Para la aproximación de los dos cuerpos, se tomó como guía el artículo publi
 
 Con el polinomio ya calculado se crea un data frame en el que para cada día en el rango dado se genera una observación con un valor calculado de posición en las tres coordenadas y velocidad en las tres coordenadas. Con esto en el script de R denominado como LimpiezaDatos.R se carga la base de datos descargada en la página de la NASA denominada [Jet Propulsion Laboratory](https://ssd.jpl.nasa.gov/horizons/app.html#/) donde se obtuvieron los datos de posición y velocidad para la Tierra tomando como observador el Sol, comenzando el día 01-04-2025 y terminando el 05-06-2025. El módulo de R proovee un breve código para leer la tabla y darle formato a la columna de fecha, además de seleccionar las columnas importantes. Es ahí donde en el script AnalisisDatos.R se toma esta base llamando el script LimpiezaDatos.R y la base de datos calculada llamando el script main.py, uniendo ambas tablas, calculando la norma de los vectores de posición y velocidad y generando los porcentajes de error.
 
-*AÑADIR CHUNK CON EL CODIGO UNA VEZ SUBIDO EL CODIGO*
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: tbl-comparacion
+#| tbl-cap: "Comparacion entre valores calculados y reales: Posicion y velocidad de la Tierra con respecto al Sol"
+
+library(kableExtra)
+library(dplyr)
+
+df_analisis <- read.csv("data/df_analisis.csv")
+
+# Formatear números a 5 decimales y errores como porcentaje
+df_analisis <- df_analisis %>%
+  mutate(
+    # Redondear valores numéricos a 5 decimales
+    across(where(is.numeric) & !contains("error"), ~ round(.x, 5)),
+    # Formatear errores como porcentaje
+    error_pos = sprintf("%.2f%%", error_pos),
+    error_vel = sprintf("%.2f%%", error_vel)
+  )
+
+kable(head(df_analisis, 5), 
+      align = 'c',
+      col.names = c("Fecha", "Real", "Calculada", "Error",
+                    "Real", "Calculada", "Error")) %>%
+  kable_styling(
+    position = "center",
+    bootstrap_options = c("striped", "hover", "responsive"),
+    full_width = FALSE,
+    font_size = 12
+  ) %>%
+  add_header_above(c(" " = 1, 
+                    "Posicion (UA)" = 3,
+                    "Velocidad (UA/dia)" = 3),
+                  bold = TRUE) %>%
+  row_spec(0, bold = TRUE, background = "#f8f9fa") %>%
+  column_spec(1, bold = TRUE) %>%
+  column_spec(c(4,7), 
+              background = "#f8f9fa") %>%
+  footnote(
+    general = "NASA/JPL Horizons System",
+    general_title = "Elaboración propia con datos reales de:",
+    footnote_as_chunk = TRUE
+  )
+```
 
 En la anterior tabla se puede apreciar un pequeño análisis en el porcentaje de error tanto de la posición del cuerpo como de la velocidad, los detalles de este serán mencionados en el FODA.
 
-Posteriormente con la clase Cuerpo.py mencionada en la metodología se instanciaron las características del objeto astronómico, posición inicial, velocidad inicial y masa, note que tanto el vector de posición como de velocidad acepta tanto de 2 o 3 coordenadas. Una vez instanciados los objetos tipo Cuerpo, la clase Simulacion_N_Cuerpos recibe una lista de ellos para los cuales calcula sus trayectorias aplicando el método de Runge Kutta de orden 4, esto lo hace con un tiempo de paso definido y recalculando su aceleración y posición con los métodos auxiliares programados en la misma clase. Con esto, el último método llamado simular genera un bucle con el tiempo de pasos definidos para crear un 'gif' con la simulación. En este apartado, es importante considerar que si se coloca un parámetro 'h' muy alto puede que en la simulación no se aprecie, o la aceleración y trayectorias no sean las esperadas. Esto se debe a que con un paso muy grande en el método de Runge Kutta el cálculo del nuevo punto por el que pasa el cuerpo será muy lejos del anterior punto demarcado, haciendo que el factor de la distancia entre cuerpos sea insignificante en el cálculo.
+Posteriormente con la clase Cuerpo.py mencionada en la metodología se instanciaron las características del objeto astronómico, posición inicial, velocidad inicial y masa, note que tanto el vector de posición como de velocidad acepta tanto de 2 o 3 coordenadas. Una vez instanciados los objetos tipo Cuerpo, la clase Simulacion_N_Cuerpos.py recibe una lista de ellos para los cuales calcula sus trayectorias aplicando el método de Runge Kutta de orden 4, esto lo hace con un tiempo de paso definido y recalculando su aceleración y posición con los métodos auxiliares programados en la misma clase. Con esto, el último método llamado simular genera un bucle con el tiempo de pasos definidos para crear un 'gif' con la simulación. En este apartado, es importante considerar que si se coloca un parámetro 'h' muy alto puede que en la simulación no se aprecie, o la aceleración y trayectorias no sean las esperadas. Esto se debe a que con un paso muy grande en el método de Runge Kutta el cálculo del nuevo punto por el que pasa el cuerpo será muy lejos del anterior punto demarcado, haciendo que el factor de la distancia entre cuerpos sea insignificante en el cálculo.
 
-La clase Simulacion_2D propone un método que junto con los módulos mencionados en la metodología (matplotlib.pyplot y matplotlib.animate) es capaz de crear ejes dinámicos, que se ajustan según las posiciones iniciales de los cuerpos y una animación donde se aprecie el movimiento de los planetas. A su vez se tiene un método para guardar la animación como un gif.
+La clase Simulacion_2D.py propone un método que junto con los módulos mencionados en la metodología (matplotlib.pyplot y matplotlib.animate) es capaz de crear ejes dinámicos, que se ajustan según las posiciones iniciales de los cuerpos y una animación donde se aprecie el movimiento de los planetas. A su vez se tiene un método para guardar la animación como un gif.
 
-La clase Simulacion_3D propone un método similar, solo que considerando un plano con 3 dimensiones, pero siguiendo la misma dinámica que Simulacion_2D.
+La clase Simulacion_3D.py propone un método similar, solo que considerando un plano con 3 dimensiones, pero siguiendo la misma dinámica que Simulacion_2D.
 
 # Análisis FODA
 
@@ -100,6 +156,7 @@ En la siguiente tabla se comentan las fortalezas, oportunidades, debilidades y a
 |  	|  	|  	|  	|
 | Código bien estructurado, dividido en módulos con propósitos claros y que interactúan correctamente entre sí. 	|  	| El módulo SeriesAproximar debe usarse con periodos cortos, ya que al depender de ecuaciones diferenciales con retraso, la aproximación para intervalos de tiempo más grandes puede resultar en márgenes de error considerables. 	|  	|
 | Se logró comparar los datos obtenidos mediante el modelo con datos reales, lo que permitió conocer su margen de error. 	|  	|  	|  	|
+
 \newpage
 
 # Anexos
