@@ -99,7 +99,7 @@ Con el polinomio ya calculado se crea un data frame en el que para cada día en 
 library(kableExtra)
 library(dplyr)
 
-df_analisis <- read.csv("data/df_analisis.csv")
+df_analisis <- read.csv("res/df_analisis.csv")
 
 # Formatear números a 5 decimales y errores como porcentaje
 df_analisis <- df_analisis %>%
