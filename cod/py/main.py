@@ -22,7 +22,7 @@ intruso = Cuerpo([0.8*UA,0-3*UA],[-35e3,40e3], 2e14)
 sim = s2d([sol,tierra,marte,intruso], G = 6.67430e-11, h=15000)
 sim.simular(pasos = 5000)
 sim.animar()
-sim.guardar_animacion('../res/simulacion_2d_1.mp4')
+sim.guardar_animacion('simulacion_2d_1.mp4')
 
 #Sistema estrella, dos cuerpos y cometa
 
@@ -35,7 +35,7 @@ cometa = Cuerpo([206e9,0], [0,24000], 6e23)
 sim = s2d([estrella,planeta1,planeta2,cometa], G = 6.67430e-11, h=15000)
 sim.simular(pasos = 5000)
 sim.animar()
-sim.guardar_animacion('../res/simulacion_2d_2.mp4')
+sim.guardar_animacion('simulacion_2d_2.mp4')
 
 
 # SIMULACIÓN EN 3D
@@ -82,7 +82,7 @@ cuerpos_5 = [
 sim = s3d(cuerpos_5, G, h)
 sim.simular(pasos=15000)  # Más pasos para trayectorias complejas
 sim.animar()
-sim.guardar_animacion('../res/simulacion_3d_1.mp4')
+sim.guardar_animacion('simulacion_3d_1.gif')
 
 '''
 # APROXIMACIÓN DE LA ÓRBITA

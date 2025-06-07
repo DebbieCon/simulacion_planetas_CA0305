@@ -128,6 +128,6 @@ class Simulacion2D(snc):
         -------
             
         '''
-        self.animacion.save(nombre_archivo, writer='ffmpeg', fps=30)
+        self._animacion.save(nombre_archivo, writer='ffmpeg', fps=15,bitrate=500)
         print(f"Animación guardada como {nombre_archivo}")
 
