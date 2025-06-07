@@ -7,7 +7,7 @@ import numpy as np
 import math
 
 
-'''
+
 # SIMULACION EN 2D
 
 UA = 1.496e11
@@ -22,22 +22,25 @@ intruso = Cuerpo([0.8*UA,0-3*UA],[-35e3,40e3], 2e14)
 sim = s2d([sol,tierra,marte,intruso], G = 6.67430e-11, h=15000)
 sim.simular(pasos = 5000)
 sim.animar()
+sim.guardar_animacion('../res/simulacion_2d_1.mp4')
 
-Sistema estrella, dos cuerpos y cometa
+#Sistema estrella, dos cuerpos y cometa
 
 estrella = Cuerpo([0,0], [0,-2000],2e30)
 planeta1 = Cuerpo([-400e9,160e9], [4000,0], 2e14)
 planeta2 = Cuerpo([150e9,0], [0,30000], 6e24)
 cometa = Cuerpo([206e9,0], [0,24000], 6e23)
 
+
 sim = s2d([estrella,planeta1,planeta2,cometa], G = 6.67430e-11, h=15000)
 sim.simular(pasos = 5000)
 sim.animar()
-'''
+sim.guardar_animacion('../res/simulacion_2d_2.mp4')
+
 
 # SIMULACIÓN EN 3D
 
-'''
+
 G = 6.67430e-11  # Constante gravitacional
 UA = 1.496e11     # 1 Unidad Astronómica (metros)
 h = 15000        # Paso de tiempo (para mayor detalle)
@@ -79,9 +82,9 @@ cuerpos_5 = [
 sim = s3d(cuerpos_5, G, h)
 sim.simular(pasos=15000)  # Más pasos para trayectorias complejas
 sim.animar()
+sim.guardar_animacion('../res/simulacion_3d_1.mp4')
+
 '''
-
-
 # APROXIMACIÓN DE LA ÓRBITA
 
 m_tierra = 0.000003004  #Masa de la tierra en términos de la masa del Sol
@@ -96,3 +99,5 @@ v0 = np.array([0.003057689999970376, -0.016948417777335137, 0.000000510216837089
 solver = SeriesAproximar(m = m_tierra, k = k_heliocentric)
 
 df = solver.resultados(t_f,t0,r0,v0,1,n_terms=10)
+
+'''

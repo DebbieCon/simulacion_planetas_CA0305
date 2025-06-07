@@ -41,19 +41,19 @@ class Simulacion2D(snc):
         '''
         return self._animacion  
 
-    @property
-    def animacion(self):
+    @animacion.setter
+    def animacion(self, new_animacion):
         '''
-        Retorna la animación de la simulación en 2D.
+        Asigna una nueva animación a la simulación 2D.  
 
         Parámetros
         ----------
-            
+            new_animacion : FuncAnimation
+                Nueva animación de la simulación 2D, se usa para mostrar la animación en pantalla.
         Retorna
         -------
-            Función de animación matplotlib.animation.FuncAnimation
         '''
-        return self._animacion
+        self._animacion = new_animacion
     
    
     def animar(self):
