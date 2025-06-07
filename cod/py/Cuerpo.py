@@ -21,7 +21,18 @@ class Cuerpo:
         self._vel = np.array(vel, dtype = float)
         self._masa = masa
         self._acel = np.zeros_like(self._pos)
-        
+    
+    def __str__(self):
+        '''
+        Retorna una representación en cadena del cuerpo.
+
+        Retorna
+        -------
+            str
+                Representación en cadena del cuerpo con su posición, velocidad y masa.
+        '''
+        return f"Cuerpo(masa={self._masa} kg, pos={self._pos}, vel={self._vel})"
+    
     @property
     def pos(self):
         '''

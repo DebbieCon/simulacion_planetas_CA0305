@@ -132,9 +132,9 @@ class Simulacion3D(snc):
         anim = animation.FuncAnimation(
             fig,
             actualizar,
-            frames=len(trayectorias[0]),
+            frames=min(len(trayectoria) for trayectoria in trayectorias),
             init_func=unir,
-            blit=True,
+            blit=False,
             interval=20
         )
 
