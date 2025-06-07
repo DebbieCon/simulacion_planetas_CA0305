@@ -125,15 +125,25 @@ class Simulacion_N_Cuerpos:
         self._trayectorias = nuevas_trayectorias
     
     
+    
     def actualizar_posiciones_temp(self, nuevas_posiciones):
-        '''DOCUMENTACION'''
+        '''
+        Parametros
+        ----------
+            nuevas_posiciones: list 
+              lista con las nuevas posiciones temporales asignadas 
+        
+        Retorna
+        -------
+        
+        '''
         for i, cuerpo in enumerate(self._cuerpos):
             cuerpo._pos = nuevas_posiciones[i]
 
     
     def calcular_aceleraciones(self):
         '''
-        Calcula la aceleracion en los tres ejes (x,y,z) para el cuerpo i, note que la aceleracion que siente i es debijo a los n-1
+        Calcula la aceleracion en los tres ejes (x,y,z) para el cuerpo i, note que la aceleracion que siente i es debido a los n-1
         cuerpos restantes
         
         Parametros
@@ -141,7 +151,6 @@ class Simulacion_N_Cuerpos:
         
         Retorna
         --------
-        
             aceleraciones : lista
                 Lista con la aceleracion en los 3 ejes
         '''
@@ -163,6 +172,17 @@ class Simulacion_N_Cuerpos:
     #Se haran los metodos necesarios para la aproximacion de la ODE por medio de Runge Kutta 4
 
     def paso_rk4(self):
+      ''' 
+      Se calcula la nueva posicion y velocidad de los cuerpos usando el metodo de Runge Kutta 4
+      
+      Parametros 
+      ----------
+      
+      Retorna
+      -------
+  
+      '''
+      
         pos_original = np.array([c.pos for c in self._cuerpos])
         vel_original = np.array([c.vel for c in self._cuerpos])
 
@@ -200,6 +220,18 @@ class Simulacion_N_Cuerpos:
             self._trayectorias[i].append(nuevas_pos[i].copy())
             
     def simular(self, pasos=1000):
+      ''' 
+      Intancia el metodo paso_rk4
+      
+      Parametros 
+      ---------
+         pasos : int
+            numero de pasos temporales, esta fijo en 1000
+      
+      Retorna
+      -------
+      
+      '''
         for paso in range(pasos):
             self.paso_rk4()
 
