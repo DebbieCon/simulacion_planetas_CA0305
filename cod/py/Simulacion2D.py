@@ -89,12 +89,39 @@ class Simulacion2D(snc):
                   for i in range(n_cuerpos)]
         
         def unir():
+          '''
+          Inicializa los elementos graficos: lineas y puntos (cuerpos)
+         
+          Parametros
+          ---------
+          
+          Retorna 
+          -------
+            list 
+              lista que combina las lineas y los puntos actualizados 
+          
+          '''
+          
             for linea, punto in zip(lineas, puntos):
                 linea.set_data([], [])
                 punto.set_data([], [])
             return lineas + puntos
         
         def actualizar(frame):
+          '''
+          Actualiza las lineas de trayectoria y los puntos de posicion 
+          
+          Parametros 
+          ---------
+            frame: int
+              indice del marco de tiempo actual 
+              
+          Retorna
+          -------
+            list
+              Lista que combina las lineas de trayectoria y los puntos de posicion actualizados 
+          '''
+          
             for i, (linea, punto) in enumerate(zip(lineas, puntos)):
                 # Trayectoria hasta el frame actual
                 x = [p[0] for p in trayectorias[i][:frame+1]]
@@ -115,6 +142,7 @@ class Simulacion2D(snc):
         plt.show()
 
         self.animacion = anim  # Guardar la animación en el atributo
+
 
     def guardar_animacion(self, nombre_archivo : str):
         '''

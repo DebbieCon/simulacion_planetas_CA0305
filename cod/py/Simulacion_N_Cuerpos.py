@@ -135,7 +135,6 @@ class Simulacion_N_Cuerpos:
         
         Retorna
         -------
-        None 
         
         '''
         for i, cuerpo in enumerate(self._cuerpos):
@@ -181,7 +180,6 @@ class Simulacion_N_Cuerpos:
       
       Retorna
       -------
-      None 
   
       '''
       
@@ -232,7 +230,6 @@ class Simulacion_N_Cuerpos:
       
       Retorna
       -------
-      None 
       
       '''
         for paso in range(pasos):
