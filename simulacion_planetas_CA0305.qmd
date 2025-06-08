@@ -19,7 +19,7 @@ cite-method: citeproc
 
 ```{=tex}
 \begin{center}
-    {\Large\textbf{El problema de los 2 cuerpos y el caós en sistemas de 3 o más cuerpos}}\par 
+    {\Large\textbf{El problema de los 2 cuerpos y el caos en sistemas de 3 o más cuerpos}}\par 
     \vspace{0.15cm}
  \large{Proyecto del curso CA0305 - Herramientas de Ciencia de Datos II}
  \\ \vspace{0.3cm}
