@@ -6,6 +6,7 @@ format:
     fig-cap-location: bottom
     citations-hover: true
     footnotes-hover: true
+    indent: true
 crossref:
   tbl-title: "Tabla"
   tbl-prefix: "Tabla"
@@ -39,7 +40,6 @@ cite-method: citeproc
 \end{center}
 ```
 # Introducción
-
 El movimiento de los cuerpos celestes ha despertado un profundo interés durante siglos, tanto para la comunidad física como matemática. De hecho, ha sido impulsor de revoluciones científicas y filosóficas a lo largo de la historia. En sus inicios, los grandes pensadores centraban sus ideas en el movimiento de los cuerpos del sistema solar.
 
 A lo largo del tiempo la discusión sobre el movimiento de los cuerpos celestes ha persistido, dando lugar a una variedad de teorías que en ocasiones se han mezclado y coexistido entre ellas. Desde la Teoría Geocéntrica formulada por Aristóteles y desarrollada por Ptolomeo, hasta la Teoría Heliocéntrica propuesta por Nicolás Copérnico en el siglo XVI y posteriormente confirmada por Galileo Galilei. Finalmente, la comunidad científica acepta el modelo Kepleriano que agrupa el heliocentrismo, las leyes de Kepler y las leyes de la mecánica establecidas por Newton [@Ponce2010].
@@ -49,6 +49,7 @@ El problema de los dos cuerpos; es decir, el movimiento de dos masas que interac
 Este problema es de gran importancia en astronomía, mecánica orbital, dinámica galáctica, formación estelar, así como en la determinación de trayectorias óptimas para misiones de naves espaciales [@perezagua2022trescuerpos].
 
 Sin embargo, un sistema mayor a dos cuerpos no es analíticamente soluble por tanto no existe una solución explícita del sistema de ecuaciones. En el presente trabajo, se resolverá y simulará la trayectoria en dos cuerpos. Y además, en el caso tres cuerpos se realizará una aproximación con el método de Runge Kutta.
+\newpage
 
 # Exploración
 
