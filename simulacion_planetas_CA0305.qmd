@@ -41,6 +41,7 @@ cite-method: citeproc
 \end{center}
 ```
 # Introducción
+
 El movimiento de los cuerpos celestes ha despertado un profundo interés durante siglos, tanto para la comunidad física como matemática. De hecho, ha sido impulsor de revoluciones científicas y filosóficas a lo largo de la historia. En sus inicios, los grandes pensadores centraban sus ideas en el movimiento de los cuerpos del sistema solar.
 
 A lo largo del tiempo la discusión sobre el movimiento de los cuerpos celestes ha persistido, dando lugar a una variedad de teorías que en ocasiones se han mezclado y coexistido entre ellas. Desde la Teoría Geocéntrica formulada por Aristóteles y desarrollada por Ptolomeo, hasta la Teoría Heliocéntrica propuesta por Nicolás Copérnico en el siglo XVI y posteriormente confirmada por Galileo Galilei. Finalmente, la comunidad científica acepta el modelo Kepleriano que agrupa el heliocentrismo, las leyes de Kepler y las leyes de la mecánica establecidas por Newton [@Ponce2010].
@@ -49,8 +50,7 @@ El problema de los dos cuerpos; es decir, el movimiento de dos masas que interac
 
 Este problema es de gran importancia en astronomía, mecánica orbital, dinámica galáctica, formación estelar, así como en la determinación de trayectorias óptimas para misiones de naves espaciales [@perezagua2022trescuerpos].
 
-Sin embargo, un sistema mayor a dos cuerpos no es analíticamente soluble por tanto no existe una solución explícita del sistema de ecuaciones. En el presente trabajo, se resolverá y simulará la trayectoria en dos cuerpos. Y además, en el caso tres cuerpos se realizará una aproximación con el método de Runge Kutta.
-\newpage
+Sin embargo, un sistema mayor a dos cuerpos no es analíticamente soluble por tanto no existe una solución explícita del sistema de ecuaciones. En el presente trabajo, se resolverá y simulará la trayectoria en dos cuerpos. Y además, en el caso tres cuerpos se realizará una aproximación con el método de Runge Kutta. \newpage
 
 # Exploración
 
@@ -89,7 +89,6 @@ Como se mencionó en la sección de Metodología, para el problema de los dos cu
 Para la aproximación de los dos cuerpos, se tomó como guía el artículo publicado por @alhowaity2022twoBody donde utiliza series de potencias para aproximar la solución de las ecuaciones diferenciales. Se sigue el mismo método propuesto en el artículo con los 10 coeficientes de la suma debido a que obtener los siguientes resulta complejo y computacionalmente más demandante. Así en la clase SeriesAproximar.py se obtienen los coeficientes y las aproximaciones para una cantidad arbitraria de días, además como se mencionó en la metodología se usarán rangos pequeños de días por el uso de las ecuaciones diferenciales con delays o retrasos.
 
 Con el polinomio ya calculado se crea un data frame en el que para cada día en el rango dado se genera una observación con un valor calculado de posición en las tres coordenadas y velocidad en las tres coordenadas. Con esto en el script de R denominado como LimpiezaDatos.R se carga la base de datos descargada en la página de la NASA denominada [Jet Propulsion Laboratory](https://ssd.jpl.nasa.gov/horizons/app.html#/) donde se obtuvieron los datos de posición y velocidad para la Tierra tomando como observador el Sol, comenzando el día 01-04-2025 y terminando el 05-06-2025. El módulo de R proovee un breve código para leer la tabla y darle formato a la columna de fecha, además de seleccionar las columnas importantes. Es ahí donde en el script AnalisisDatos.R se toma esta base llamando el script LimpiezaDatos.R y la base de datos calculada llamando el script main.py, uniendo ambas tablas, calculando la norma de los vectores de posición y velocidad y generando los porcentajes de error.
-
 
 ```{r}
 #| echo: false
@@ -150,14 +149,14 @@ La clase Simulacion_3D.py propone un método similar, solo que considerando un p
 
 En la siguiente tabla se comentan las fortalezas, oportunidades, debilidades y amenazas identificadas en el desarrollo actual del proyecto:
 
-| **Fortalezas** 	| **Oportunidades** 	| **Debilidades** 	| **Amenazas** 	|
-|---	|---	|---	|---	|
-| Métodos y procedimientos con amplio respaldo bibliográfico y ejemplos pasados que demuestran su funcionamiento. 	| En el módulo SeriesAproximar, existe la posibilidad de agregar polinomios adicionales para mejorar la precisión del modelo en periodos de tiempo más extensos, pero la viabilidad de esto debe analizarse con mayor profundidad más adelante. 	| Con los métodos actuales, el porcentaje de error en los vectores de posición para un sistema Tierra-Sol está entre 6% y 6,4%, que es considerable. 	| Al ser un sistema caótico, obtener datos reales con suficiente precisión para comparar simulaciones de más de dos cuerpos es complejo. lo que puede limitar la evaluación objetiva del modelo. 	|
-|  	|  	|  	|  	|
-| En general, se cumplen los objetivos planteados en la metodología: simulación y animación de sistemas de n-cuerpos, así como aproximación para un escenario de dos cuerpos. 	| Se puede investigar y experimentar sobre técnicas para reducir el porcentaje de error de los resultados obtenidos con el modelo respecto a datos reales. 	| Los porcentajes de error en los vectores de velocidad son aún mayores y, al menos por el momento, se desconoce cómo mejorarlos. 	| El modelo es más simple y menos preciso que otras alternativas profesionales como REBOUND, que puede admitir muchos más parámetros iniciales, pero al costo de mayor exigencia computacional. 	|
-|  	|  	|  	|  	|
-| Código bien estructurado, dividido en módulos con propósitos claros y que interactúan correctamente entre sí. 	|  	| El módulo SeriesAproximar debe usarse con periodos cortos, ya que al depender de ecuaciones diferenciales con retraso, la aproximación para intervalos de tiempo más grandes puede resultar en márgenes de error considerables. 	|  	|
-| Se logró comparar los datos obtenidos mediante el modelo con datos reales, lo que permitió conocer su margen de error. 	|  	|  	|  	|
+| **Fortalezas**                                                                                                                                                              | **Oportunidades**                                                                                                                                                                                                                             | **Debilidades**                                                                                                                                                                                                                 | **Amenazas**                                                                                                                                                                                   |
+|------------------|------------------|------------------|------------------|
+| Métodos y procedimientos con amplio respaldo bibliográfico y ejemplos pasados que demuestran su funcionamiento.                                                             | En el módulo SeriesAproximar, existe la posibilidad de agregar polinomios adicionales para mejorar la precisión del modelo en periodos de tiempo más extensos, pero la viabilidad de esto debe analizarse con mayor profundidad más adelante. | Con los métodos actuales, el porcentaje de error en los vectores de posición para un sistema Tierra-Sol está entre 6% y 6,4%, que es considerable.                                                                              | Al ser un sistema caótico, obtener datos reales con suficiente precisión para comparar simulaciones de más de dos cuerpos es complejo. lo que puede limitar la evaluación objetiva del modelo. |
+|                                                                                                                                                                             |                                                                                                                                                                                                                                               |                                                                                                                                                                                                                                 |                                                                                                                                                                                                |
+| En general, se cumplen los objetivos planteados en la metodología: simulación y animación de sistemas de n-cuerpos, así como aproximación para un escenario de dos cuerpos. | Se puede investigar y experimentar sobre técnicas para reducir el porcentaje de error de los resultados obtenidos con el modelo respecto a datos reales.                                                                                      | Los porcentajes de error en los vectores de velocidad son aún mayores y, al menos por el momento, se desconoce cómo mejorarlos.                                                                                                 | El modelo es más simple y menos preciso que otras alternativas profesionales como REBOUND, que puede admitir muchos más parámetros iniciales, pero al costo de mayor exigencia computacional.  |
+|                                                                                                                                                                             |                                                                                                                                                                                                                                               |                                                                                                                                                                                                                                 |                                                                                                                                                                                                |
+| Código bien estructurado, dividido en módulos con propósitos claros y que interactúan correctamente entre sí.                                                               |                                                                                                                                                                                                                                               | El módulo SeriesAproximar debe usarse con periodos cortos, ya que al depender de ecuaciones diferenciales con retraso, la aproximación para intervalos de tiempo más grandes puede resultar en márgenes de error considerables. |                                                                                                                                                                                                |
+| Se logró comparar los datos obtenidos mediante el modelo con datos reales, lo que permitió conocer su margen de error.                                                      |                                                                                                                                                                                                                                               |                                                                                                                                                                                                                                 |                                                                                                                                                                                                |
 
 \newpage
 
@@ -165,29 +164,16 @@ En la siguiente tabla se comentan las fortalezas, oportunidades, debilidades y a
 
 Repositorio de GitHub : <https://github.com/DebbieCon/simulacion_planetas_CA0305/blob/main/simulacion_planetas_CA0305.qmd>
 
-
-![](figs/sim1/1.png){.center width=50%}
-![](figs/sim1/2.png){.center width=50%}
-![](figs/sim1/3.png){.center width=50%}
-![](figs/sim1/4.png){.center width=50%}
+![](figs/sim1/1.png){.center width="50%"} ![](figs/sim1/2.png){.center width="50%"} ![](figs/sim1/3.png){.center width="50%"} ![](figs/sim1/4.png){.center width="50%"}
 
 **Figura 1:** Simulación 2D de un sistema conformado por una estrella quieta masiva, 2 planetas y un cometa.
 
-![](figs/sim2/1.png){.center width=50%}
-![](figs/sim2/2.png){.center width=50%}
-![](figs/sim2/3.png){.center width=50%}
-![](figs/sim2/4.png){.center width=50%}
+![](figs/sim2/1.png){.center width="50%"} ![](figs/sim2/2.png){.center width="50%"} ![](figs/sim2/3.png){.center width="50%"} ![](figs/sim2/4.png){.center width="50%"}
 
 **Figura 2:** Simulación 2D de un sistema conformado por el sol, tierra, marte y un cuerpo intruso.
 
-
-![](figs/sim3/1.png){.center width=50%}
-![](figs/sim3/2.png){.center width=50%}
-![](figs/sim3/3.png){.center width=50%}
-![](figs/sim3/4.png){.center width=50%}
+![](figs/sim3/1.png){.center width="50%"} ![](figs/sim3/2.png){.center width="50%"} ![](figs/sim3/3.png){.center width="50%"} ![](figs/sim3/4.png){.center width="50%"}
 
 **Figura 3:** Simulación 3D de un sistema conformado por una estrella quieta, dos planetas y dos cometas.
-
-
 
 # Referencias
