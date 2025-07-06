@@ -66,7 +66,7 @@ Una vez que son postuladas y aceptadas las leyes de la mecánica desarrolladas p
 
 La mecánica clásica newtoniana permite describir el movimiento de los objetos mediante ecuaciones diferenciales. Estas ecuaciones basadas en las Leyes de Newton expresan cómo cambian las variables físicas como posición y velocidad en función del tiempo. Al resolver el sistema, se obtiene la trayectoria del mismo en cualquier instante. Por lo tanto, el comportamiento del sistema se reduce en calcular las funciones que satisfacen las ecuaciones. Ahora bien, encontrar las funciones mencionadas es sumamente complejo, inclusive para modelos simples. Los intentos de encontrar estas funciones se agrupan bajo el nombre del problema de los n cuerpos [@Ponce2010].
 
-Al tratarse de dos cuerpos, si es posible encontrar una solución al sistema donde se implementa a su vez la fórmula de la fuerza gravitacional para lograrlo. Sin embargo, para un sistema de tres o más cuerpos esto no es posible por tanto no es “analiticamente soluble” [@Guzman2025]. La conclusión de que no es posible encontrar un función en el caso de tres cuerpos fue desarrollada por Henri Poincaré. Él determinó que en casos como el anterior la evolución del sistema es extremadamente caótica. Ya que, una pequeña perturbación en el estado inicial podría llevar eventualmente a un estado totalmente diferente. Por lo tanto, es imposible predecir el estado del sistema dado que los instrumentos de medición ni siquiera pueden detectar esa mínima variación [@pardo2022mecanica].
+Al tratarse de dos cuerpos, sí es posible encontrar una solución al sistema donde se implementa a su vez la fórmula de la fuerza gravitacional para lograrlo. Sin embargo, para un sistema de tres o más cuerpos esto no es posible por tanto no es “analíticamente soluble” [@Guzman2025]. La conclusión de que no es posible encontrar un función en el caso de tres cuerpos fue desarrollada por Henri Poincaré. Él determinó que en casos como el anterior la evolución del sistema es extremadamente caótica. Ya que, una pequeña perturbación en el estado inicial podría llevar eventualmente a un estado totalmente diferente. Por lo tanto, es imposible predecir el estado del sistema dado que los instrumentos de medición ni siquiera pueden detectar esa mínima variación [@pardo2022mecanica].
 
 Poincaré más bien propone un estudio más cualitativo de las órbitas cuando se trata de esta cantidad o mayor cantidad de masas. Es así, que se establece una nueva área en la matemática; sistemas dinámicos [@Ponce2010].
 
@@ -170,7 +170,7 @@ Repositorio de GitHub : <https://github.com/DebbieCon/simulacion_planetas_CA0305
 
 ![](figs/sim2/1.png){.center width="50%"} ![](figs/sim2/2.png){.center width="50%"} ![](figs/sim2/3.png){.center width="50%"} ![](figs/sim2/4.png){.center width="50%"}
 
-**Figura 2:** Simulación 2D de un sistema conformado por el sol, tierra, marte y un cuerpo intruso.
+**Figura 2:** Simulación 2D de un sistema conformado por el Sol, Tierra, Marte y un cuerpo intruso.
 
 ![](figs/sim3/1.png){.center width="50%"} ![](figs/sim3/2.png){.center width="50%"} ![](figs/sim3/3.png){.center width="50%"} ![](figs/sim3/4.png){.center width="50%"}
 
