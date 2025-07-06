@@ -26,6 +26,21 @@ class Simulacion3D(snc):
         super().__init__(cuerpos, G, h)
         self._animacion = None
 
+
+    def __str__(self):
+        '''
+        Retorna una representación en cadena de la simulación 3D.
+
+        Parámetros
+        ----------
+        
+        Retorna
+        -------
+            str
+                Representación en cadena de la simulación 3D.
+        '''
+        return f"Simulación 3D con {len(self._cuerpos)} cuerpos, paso de tiempo: {self._h} s, G: {self._G} m^3 kg^-1 s^-2"
+
     @property
     def animacion(self):
         '''
@@ -117,9 +132,9 @@ class Simulacion3D(snc):
         anim = animation.FuncAnimation(
             fig,
             actualizar,
-            frames=len(trayectorias[0]),
+            frames=min(len(trayectoria) for trayectoria in trayectorias),
             init_func=unir,
-            blit=True,
+            blit=False,
             interval=20
         )
 

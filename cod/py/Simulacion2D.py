@@ -26,6 +26,17 @@ class Simulacion2D(snc):
         super().__init__(cuerpos, G, h)
         self._animacion = None
     
+    def __str__(self):
+        '''
+        Retorna una representación en cadena de la simulación 2D.
+
+        Retorna
+        -------
+            str
+                Representación en cadena de la simulación 2D.
+        '''
+        return f"Simulación 2D con {len(self._cuerpos)} cuerpos, paso de tiempo: {self._h} s, G: {self._G} m^3 kg^-1 s^-2"
+
     @property
     def animacion(self):
         '''
@@ -41,19 +52,19 @@ class Simulacion2D(snc):
         '''
         return self._animacion  
 
-    @property
-    def animacion(self):
+    @animacion.setter
+    def animacion(self, new_animacion):
         '''
-        Retorna la animación de la simulación en 2D.
+        Asigna una nueva animación a la simulación 2D.  
 
         Parámetros
         ----------
-            
+            new_animacion : FuncAnimation
+                Nueva animación de la simulación 2D, se usa para mostrar la animación en pantalla.
         Retorna
         -------
-            Función de animación matplotlib.animation.FuncAnimation
         '''
-        return self._animacion
+        self._animacion = new_animacion
     
    
     def animar(self):
@@ -89,12 +100,37 @@ class Simulacion2D(snc):
                   for i in range(n_cuerpos)]
         
         def unir():
+            '''
+            Inicializa los elementos graficos: lineas y puntos (cuerpos)
+            
+            Parametros
+            ---------
+            
+            Retorna 
+            -------
+                list 
+                lista que combina las lineas y los puntos actualizados 
+            
+            '''
             for linea, punto in zip(lineas, puntos):
                 linea.set_data([], [])
                 punto.set_data([], [])
             return lineas + puntos
         
         def actualizar(frame):
+            '''
+            Actualiza las lineas de trayectoria y los puntos de posicion 
+            
+            Parametros 
+            ---------
+                frame: int
+                indice del marco de tiempo actual 
+                
+            Retorna
+            -------
+                list
+                Lista que combina las lineas de trayectoria y los puntos de posicion actualizados 
+            '''
             for i, (linea, punto) in enumerate(zip(lineas, puntos)):
                 # Trayectoria hasta el frame actual
                 x = [p[0] for p in trayectorias[i][:frame+1]]
@@ -103,7 +139,7 @@ class Simulacion2D(snc):
                 # Posición actual del cuerpo
                 if frame < len(trayectorias[i]):
                     punto.set_data([trayectorias[i][frame][0]], 
-                                  [trayectorias[i][frame][1]])
+                                   [trayectorias[i][frame][1]])
             return lineas + puntos
         
         anim = animation.FuncAnimation(
@@ -115,6 +151,7 @@ class Simulacion2D(snc):
         plt.show()
 
         self.animacion = anim  # Guardar la animación en el atributo
+
 
     def guardar_animacion(self, nombre_archivo : str):
         '''
@@ -128,6 +165,6 @@ class Simulacion2D(snc):
         -------
             
         '''
-        self.animacion.save(nombre_archivo, writer='ffmpeg', fps=30)
+        self._animacion.save(nombre_archivo, writer='ffmpeg', fps=15,bitrate=500)
         print(f"Animación guardada como {nombre_archivo}")
 
