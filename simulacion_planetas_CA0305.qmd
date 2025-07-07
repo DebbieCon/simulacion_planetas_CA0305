@@ -50,7 +50,8 @@ El problema de los dos cuerpos; es decir, el movimiento de dos masas que interac
 
 Este problema es de gran importancia en astronomía, mecánica orbital, dinámica galáctica, formación estelar, así como en la determinación de trayectorias óptimas para misiones de naves espaciales [@perezagua2022trescuerpos].
 
-Sin embargo, un sistema mayor a dos cuerpos no es analíticamente soluble por tanto no existe una solución explícita del sistema de ecuaciones. En el presente trabajo, se resolverá y simulará la trayectoria en dos cuerpos. Y además, en el caso tres cuerpos se realizará una aproximación con el método de Runge Kutta. \newpage
+Sin embargo, un sistema mayor a dos cuerpos no es analíticamente soluble por tanto no existe una solución explícita del sistema de ecuaciones. En el presente trabajo, se simulará la trayectoria tanto de dos cuerpos como de múltiples. Mediante la aproximación con el método de Runge Kutta y el uso de redes neuronales físicamente informadas. 
+\newpage
 
 # Exploración
 
