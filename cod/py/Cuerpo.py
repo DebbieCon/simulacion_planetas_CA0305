@@ -64,7 +64,7 @@ class Cuerpo:
 
         Retorna
         -------
-            np.array
+            self.__vel: np.array
                 Vector de 3 coordenadas que representa la velocidad del cuerpo en m/s.
         '''
         return self._vel
@@ -88,7 +88,7 @@ class Cuerpo:
 
         Retorna
         -------
-            float
+            self.__masa: float
                 Masa del cuerpo en kilogramos.
         '''
         return self._masa
