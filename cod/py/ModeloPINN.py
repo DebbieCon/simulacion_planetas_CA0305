@@ -12,6 +12,20 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 class ModeloPINN(Datos):
     def __init__(self, ruta, planetas, fecha = 'fecha', device='cpu'):
+      '''
+      Constructor clase ModeloPINN que hereda clase Datos
+      
+      Parámetros
+      ----------
+      ruta: str
+        dirección a la base de datos 
+      fecha: pd.datetime  
+        fechas convertidas a objetos datetime 
+      planetas: list 
+        lista de planetas en la base 
+      device: str
+        por defecto se coloca en el cpu 
+      '''
         super().__init__(ruta, fecha, planetas=planetas)
 
         self._disp = torch.device(device)
@@ -25,19 +39,65 @@ class ModeloPINN(Datos):
 
     # --- Getters y setters ---
     @property
-    def modelo(self): return self._modelo
+    def modelo(self): 
+      '''
+      Retorna el modelo de la red neuronal
+
+      Retorna
+      -------
+      self._modelo: objeto
+        Modelo de red neuronal 
+      '''
+      return self._modelo
     @modelo.setter
-    def modelo(self, red): self._modelo = red
+    def modelo(self, red):
+      '''
+      Asigna un nuevo modelo de red neuronal
+  
+      Parámetros
+      ----------
+      red : objeto
+          nuevo modelo de red neuronal
+      '''
+      self._modelo = red
 
     @property
-    def optim(self): return self._optim
+    def optim(self): 
+      '''
+      Retorna el optimizador del modelo
+  
+      Retorna
+      -------
+      self._optim: objeto
+          optimizador a utilizar en el entrenamiento del modelo
+      '''
+      return self._optim
     @optim.setter
-    def optim(self, optimizador): self._optim = optimizador
+    def optim(self, optimizador): 
+      '''
+      Asigna un nuevo optimizador al modelo
+  
+      Parámetros
+      ----------
+      optimizador : objeto
+          nuevo optimizador a utilizar en el entrenamiento
+      '''
+      self._optim = optimizador
 
     @property
-    def scheduler(self): return self._scheduler
+    def scheduler(self): 
+      '''
+      Retorna el scheduler del optimizador
+  
+      Retorna
+      -------
+      self._scheduler: objeto
+          Scheduler que ajusta la tasa de aprendizaje durante el entrenamiento
+      '''
+      return self._scheduler
     @scheduler.setter
-    def scheduler(self, sched): self._scheduler = sched
+    def scheduler(self, sched): 
+      self._scheduler = sched
 
     @property
     def disp(self): return self._disp
