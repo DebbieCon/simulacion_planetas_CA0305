@@ -86,7 +86,7 @@ map(df_listas_1_f, ~ length(.x[[1]]))
 
 
 longitudes_1 <- map_int(df_listas_1, ~ length(.x[[1]]))
-longitud_final_1 <- longitudes['val_f']
+longitud_final_1 <- longitudes_1['val_f']
 
 
 df_listas_1_padded_f <- df_listas_1_f %>%
@@ -140,13 +140,54 @@ df_expandido_5_f <- df_listas_5_padded_f %>%
 write.csv(df_expandido_1, 'df_f_5_f.csv')
 
 
-
-
-
 ----------------------------------------------------------------------------
-  
-for (i in seq_along(lista_dfs_f)) {
-  write.csv(lista_dfs_f[[i]], paste0("df_f_", i, ".csv"), row.names = FALSE)
-}
+#GRAFICA CON FISICA 
+df_expandido_5_f %>% filter(!is.na(val_loss)) %>% 
+  ggplot() + geom_line(aes(x= indice, y = val_loss, color='Pérdida de validación'))+
+  geom_line(aes(x= indice, y = train_loss, color='Pérdida de entrenamiento')) +
+  scale_color_manual(values = c("Pérdida de validación" = "blue", "Pérdida de entrenamiento" = "red")) +
+  labs(
+    title = 'Evolución de la pérdida del modelo implementando física',
+    x = 'Épocas',
+    y = 'Pérdida',
+    color = ''
+  ) + theme_minimal()
+
+df_expandido_5_f['indice'] <- 1:9454
+
+#GRAFICA SIN FISICA 
+
+df_recortado %>% filter(!is.na(val_loss)) %>% filter(indice < 250) %>% filter(train_loss<0.3) %>% 
+  ggplot() + geom_line(aes(x= indice, y = val_loss, color='Pérdida de validación'))+
+  geom_line(aes(x= indice, y = train_loss, color='Pérdida de entrenamiento')) +
+  scale_color_manual(values = c("Pérdida de validación" = "blue", "Pérdida de entrenamiento" = "red")) +
+  labs(
+    title = 'Evolución de la pérdida del modelo sin física',
+    x = 'Épocas',
+    y = 'Pérdida',
+    color = ''
+  ) + theme_minimal()
+
+
+df_recortado['indice'] <- 1:1000
+
+
+df_recortado %>% filter(!is.na(val_loss)) %>% 
+  ggplot() + geom_line(aes(x= indice, y = val_f, color='Pérdida de validación física'))+
+  geom_line(aes(x= indice, y = train_f, color='Pérdida de entrenamiento física')) +
+  scale_color_manual(values = c("Pérdida de validación física" = "blue", "Pérdida de entrenamiento física" = "red")) +
+  labs(
+    title = 'Evolución de la pérdida física',
+    x = 'Épocas',
+    y = 'Pérdida física',
+    color = ''
+  ) + theme_minimal()
+
+
+
+
+
+
+
 
 

@@ -130,7 +130,9 @@ Para futuras investigaciones se puede mejorar el escalado de los valores o bien 
 
 # Anexos
 
-Repositorio de GitHub : <https://github.com/DebbieCon/simulacion_planetas_CA0305/blob/main/simulacion_planetas_CA0305.qmd>
+Repositorio de GitHub : <https://github.com/DebbieCon/simulacion_planetas_CA0305.git>
+
+Enlace a la presentación: <https://www.canva.com/design/DAGrrNG64po/wg6AohWGLf5kLQu9_7g9Lg/edit?utm_content=DAGrrNG64po&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton>
 
 ![](figs/sim1/1.png){.center width="50%"} ![](figs/sim1/2.png){.center width="50%"} ![](figs/sim1/3.png){.center width="50%"} ![](figs/sim1/4.png){.center width="50%"}
 
@@ -143,5 +145,21 @@ Repositorio de GitHub : <https://github.com/DebbieCon/simulacion_planetas_CA0305
 ![](figs/sim3/1.png){.center width="50%"} ![](figs/sim3/2.png){.center width="50%"} ![](figs/sim3/3.png){.center width="50%"} ![](figs/sim3/4.png){.center width="50%"}
 
 **Figura 3:** Simulación 3D de un sistema conformado por una estrella quieta, dos planetas y dos cometas.
+
+
+![](res/Rplot.jpeg){.center width="80%"} 
+
+**Figura 4: ** Evolución de la pérdida física 
+
+
+![](res/Rplot02.jpeg){.center width="80%"} 
+
+**Figura 5: ** Evolución de la pérdida del modelo implementando física 
+
+![](res/Rplot01.jpeg){.center width="80%"} 
+
+**Figura 6: ** Evolución de la pérdida del modelo sin física 
+
+
 
 # Referencias
