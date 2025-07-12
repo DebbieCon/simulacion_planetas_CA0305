@@ -61,86 +61,6 @@ df_expandido <- df.1 %>%
 
 #historiales con fisica 
 
-tabla.f<- read_csv('historiales_con_Fisica.csv')
-
-lista_dfs_f <- split(tabla.f, seq(nrow(tabla.f)))
-
-dff_1 <- lista_dfs_f[[1]]
-dff_2 <- lista_dfs_f[[2]]
-dff_3 <- lista_dfs_f[[3]]
-dff_4 <- lista_dfs_f[[4]]
-dff_5 <- lista_dfs_f[[5]]
-
-
-convertir_vector <- function(x) {
-  lapply(x, function(s) as.numeric(strsplit(gsub("\\[|\\]", "", s), ",")[[1]]))
-}
-
-#========================================================================
-df_listas_1 <- dff_1 %>% 
-  mutate(across(everything(), convertir_vector))
-
-map(df_listas_1, ~ length(.x[[1]]))
-
-
-longitudes_1 <- map_int(df_listas_1, ~ length(.x[[1]]))
-longitud_final_1 <- longitudes['val_f']
-
-
-df_listas_1_padded <- df_listas_1 %>%
-  mutate(across(everything(), ~ lapply(.x, function(vec) {
-    len <- length(vec)
-    if (len < longitud_final_1) {
-      c(vec, rep(NA, longitud_final_1 - len))
-    } else if (len > longitud_final_1) {
-      vec[1:longitud_final_1]
-    } else {
-      vec
-    }
-  })))
-
-
-df_expandido_1 <- df_listas_1_padded %>%
-  unnest(cols = everything())
-
-
-write.csv(df_expandido_1, 'df_f_1.csv')
-
-#=============================================================================
-  
-
-df_listas_5 <- dff_5 %>% 
-  mutate(across(everything(), convertir_vector))
-
-map(df_listas_5, ~ length(.x[[1]]))
-
-
-longitudes_5 <- map_int(df_listas_5, ~ length(.x[[1]]))
-longitud_final_5 <- longitudes['val_f']
-
-
-df_listas_5_padded <- df_listas_5 %>%
-  mutate(across(everything(), ~ lapply(.x, function(vec) {
-    len <- length(vec)
-    if (len < longitud_final_5) {
-      c(vec, rep(NA, longitud_final_5 - len))
-    } else if (len > longitud_final_5) {
-      vec[1:longitud_final_5]
-    } else {
-      vec
-    }
-  })))
-
-
-df_expandido_5 <- df_listas_5_padded %>%
-  unnest(cols = everything())
-
-
-write.csv(df_expandido_1, 'df_f_5.csv')
-
-
-#===============================================================================
-  
 
 tabla.ff<- read_csv('historiales_con_Fisica_f.csv')
 
@@ -218,15 +138,6 @@ df_expandido_5_f <- df_listas_5_padded_f %>%
 
 
 write.csv(df_expandido_1, 'df_f_5_f.csv')
-
-
-
-
-
-
-
-
-
 
 
 
