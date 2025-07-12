@@ -93,7 +93,7 @@ class Simulacion3D(snc):
         ax.set_xlabel('X (m)')
         ax.set_ylabel('Y (m)')
         ax.set_zlabel('Z (m)')
-        ax.set_title('Simulación 3D de N-Cuerpos')
+        ax.set_title(f'Simulación 3D de {n_cuerpos}-Cuerpos')
         
         
         # Calcular límites automáticamente
