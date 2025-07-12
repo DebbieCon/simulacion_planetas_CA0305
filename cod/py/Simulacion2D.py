@@ -90,7 +90,7 @@ class Simulacion2D(snc):
         plt.ylim(-max_range, max_range)
         ax.set_xlabel('X (m)')
         ax.set_ylabel('Y (m)')
-        ax.set_title('Simulación 2D de N-Cuerpos')
+        ax.set_title(f'Simulación 2D de {n_cuerpos}-Cuerpos')
         ax.grid(True)
         
         # Líneas (trayectorias) y puntos (cuerpos)
@@ -150,7 +150,7 @@ class Simulacion2D(snc):
         plt.tight_layout()
         plt.show()
 
-        self.animacion = anim  # Guardar la animación en el atributo
+        self.animacion = anim 
 
 
     def guardar_animacion(self, nombre_archivo : str):
