@@ -1,5 +1,7 @@
 
 library(readxl)
+library(tidyverse)
+library(purrr)
 
 
 #historiales sin fisica 
@@ -16,10 +18,49 @@ df.4 <- lista_dfs[[4]]
 df.5 <- lista_dfs[[5]]
 
 
+#conversion
+df_listas <- df.1 %>% 
+  mutate(across(everything(), convertir_vector))
+
+
+#ver cantidad de filas
+map(df_listas, ~ length(.x[[1]]))
+
+
+convertir_vector <- function(x) {
+  lapply(x, function(s) as.numeric(strsplit(gsub("\\[|\\]", "", s), ",")[[1]]))
+}
+
+
+longitudes <- map_int(df_listas, ~ length(.x[[1]]))
+min_len <- min(longitudes)
+
+
+df_recortado <- df_listas %>%
+  mutate(across(everything(), ~ lapply(.x, function(vec) vec[1:min_len]))) %>%
+  unnest(cols = everything())
+
+
+write.csv(df_recortado, 'df_1_final.csv', row.names = FALSE)
+
+
+
+
 for (i in seq_along(lista_dfs)) {
   write.csv(lista_dfs[[i]], paste0("df_", i, ".csv"), row.names = FALSE)
 }
 
+
+
+convertir_vector <- function(x) {
+  lapply(x, function(s) as.numeric(strsplit(gsub("\\[|\\]", "", s), ",")[[1]]))
+}
+
+df_expandido <- df.1 %>%
+  mutate(across(everything(), convertir_vector)) %>%
+  unnest(cols = everything())
+                
+                
 
 #historiales con fisica 
 
