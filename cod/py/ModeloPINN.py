@@ -268,7 +268,7 @@ class ModeloPINN(Datos):
         '''
         self.optim = optim.Adam(self.modelo.parameters(), lr=1e-3)
         self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(
-            self.optim, factor=0.5, paciencia=paciencia, min_lr=min_lr
+            self.optim, factor=0.5, patience=paciencia, min_lr=min_lr
         )
 
     def particionar_datos(self, tam_test=0.2, batch_size=32):

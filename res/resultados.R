@@ -67,9 +67,9 @@ tabla.ff<- read_csv('historiales_con_Fisica_f.csv')
 lista_dfs_ff <- split(tabla.ff, seq(nrow(tabla.ff)))
 
 dff_1_f <- lista_dfs_ff[[1]]
-dff_2 <- lista_dfs_f[[2]]
-dff_3 <- lista_dfs_f[[3]]
-dff_4 <- lista_dfs_f[[4]]
+dff_2 <- lista_dfs_ff[[2]]
+dff_3 <- lista_dfs_ff[[3]]
+dff_4 <- lista_dfs_ff[[4]]
 dff_5_f <- lista_dfs_ff[[5]]
 
 
@@ -85,7 +85,7 @@ df_listas_1_f <- dff_1_f %>%
 map(df_listas_1_f, ~ length(.x[[1]]))
 
 
-longitudes_1 <- map_int(df_listas_1, ~ length(.x[[1]]))
+longitudes_1 <- map_int(df_listas_1_f, ~ length(.x[[1]]))
 longitud_final_1 <- longitudes['val_f']
 
 

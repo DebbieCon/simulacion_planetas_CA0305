@@ -18,37 +18,37 @@ class Datos(Dataset):
       planetas: list 
         lista de planetas en la base 
       '''
-        self._datos = pd.read_csv(url, index_col=0)
+      self._datos = pd.read_csv(url, index_col=0)
 
-        if planetas is None:
-            planetas = ['mercurio','venus','tierra','marte','jupiter','saturno','urano','neptuno']
+      if planetas is None:
+        planetas = ['mercurio','venus','tierra','marte','jupiter','saturno','urano','neptuno']
 
-        self._planetas = planetas
-        self._num_planetas = len(planetas)
-        self._num_datos = len(self._datos)
+      self._planetas = planetas
+      self._num_planetas = len(planetas)
+      self._num_datos = len(self._datos)
 
-        self._t = None
-        self._id_obj = None
-        self._r = None
-        self._v = None
+      self._t = None
+      self._id_obj = None
+      self._r = None
+      self._v = None
 
-        self._scaler_t = MinMaxScaler()
-        self._scaler_pos = StandardScaler()
-        self._scaler_r = StandardScaler()
-        self._scaler_v = StandardScaler()
+      self._scaler_t = MinMaxScaler()
+      self._scaler_pos = StandardScaler()
+      self._scaler_r = StandardScaler()
+      self._scaler_v = StandardScaler()
 
-        self._t_s = None
-        self._pos_s = None
-        self._r_s = None
-        self._v_s = None
+      self._t_s = None
+      self._pos_s = None
+      self._r_s = None
+      self._v_s = None
 
-        self._pos_mtx = None
-        self._vel_mtx = None
+      self._pos_mtx = None
+      self._vel_mtx = None
 
-        self._datos[fecha] = pd.to_datetime(self._datos[fecha])
-        self._datos['t'] = (self._datos[fecha] - self._datos[fecha].min()).dt.days.astype(np.float32)
-        self._datos.drop(columns=[fecha], inplace=True)
-        self._t = self._datos['t'].values.reshape(-1,1).astype(np.float32)
+      self._datos[fecha] = pd.to_datetime(self._datos[fecha])
+      self._datos['t'] = (self._datos[fecha] - self._datos[fecha].min()).dt.days.astype(np.float32)
+      self._datos.drop(columns=[fecha], inplace=True)
+      self._t = self._datos['t'].values.reshape(-1,1).astype(np.float32)
 
     # --- Properties con setters ---
     @property
@@ -173,25 +173,26 @@ class Datos(Dataset):
 
     @property
     def id_obj(self): 
-       '''
-      Retorna el identificador del objeto.
-  
-      Retorna
-      -------
-      self._id_obj: int 
-          identificador númerico asociado al objeto 
       '''
+       Retorna el identificador del objeto.
+  
+       Retorna
+       -------
+       self._id_obj: int 
+          identificador númerico asociado al objeto 
+       '''
       return self._id_obj
+
     @id_obj.setter
     def id_obj(self, valor): 
-       '''
+      '''
       Asigna un nuevo identificador al objeto.
   
       Parámetros
       ----------
       valor : int 
           Nuevo identificador del objeto.
-      '''
+      ''' 
       self._id_obj = valor
 
     @property
@@ -205,9 +206,10 @@ class Datos(Dataset):
           Vector de posiciones 
       '''
       return self._r
+    
     @r.setter
     def r(self, valor): 
-       '''
+      '''
       Asigna un nuevo vector de posición 
   
       Parámetros
@@ -230,7 +232,7 @@ class Datos(Dataset):
       return self._v
     @v.setter
     def v(self, valor): 
-       '''
+      '''
       Asigna un nuevo vector de velocidades 
   
       Parámetros
@@ -253,7 +255,7 @@ class Datos(Dataset):
       return self._scaler_t
     @scaler_t.setter
     def scaler_t(self, valor): 
-       '''
+      '''
       Asigna un nuevo escalador de tiempo 
   
       Parámetros
@@ -334,7 +336,7 @@ class Datos(Dataset):
 
     @property
     def t_s(self): 
-       '''
+      '''
       Retorna los valores de tiempo escalados
   
       Retorna
@@ -460,7 +462,7 @@ class Datos(Dataset):
       return self._vel_mtx
     @vel_mtx.setter
     def vel_mtx(self, valor): 
-       '''
+      '''
       Asigna una nueva matriz de velocidades
   
       Parámetros
@@ -584,7 +586,7 @@ class Datos(Dataset):
 
 
 
-    def datos_id(self, idx
+    def datos_id(self, idx):
       '''
       Retorna un conjunto de datos escalado a partir de un índice
   
