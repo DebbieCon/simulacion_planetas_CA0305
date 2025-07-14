@@ -78,7 +78,7 @@ Asimismo, a partir del concepto de redes neuronales se desarrolla lo que se cono
 
 Las PINN comúnmente cuentan con una estructura de tres grandes bloques. Primeramente, una red neuronal artificial el cual recibe un vector de variables y devuelve el valor de la solución predicha. Luego, se establece un “módulo físicamente informado” el cual calcula las derivadas de la salida de la red respecto a sus entradas e introduce las leyes físicas donde determina que tan bien se cumplen estas leyes a los puntos anteriores. Finalmente, cuenta con un mecanismo de retroalimentación que define el problema de minimización. Es decir, considera el error de los datos observados y el error al incluir las ecuaciones físicas como método de ajuste a los parámetros de la red, para posteriormente mejorar su predicción.
 
-# Desarrollo
+# Metodología
 
 Basado en lo expuesto en la introducción y la exploración, es pertinente plantear una metodología que permita darle una respuesta satisfactoria al problema planteado. En este caso, se pretende lograr tres objetivos principales: simulación, visualización y predicción. Como se explicó en la sección anterior, el problema de los dos cuerpos puede ser resuelto por completo de forma analítica, pero esto requeriría darle un enfoque al trabajo que no solo excede los alcances del curso, sino que se desvía de los aprendizajes esperados.
 
@@ -96,7 +96,7 @@ Además de ajustarse a los datos, el modelo también debe cumplir una formulaci�
 
 Con este enfoque, el módulo entrena la red neuronal en dos fases: primero sin física (ajuste puro a los datos), para tener un punto de partida razonable, y luego con física, minimizando tanto el error de predicción como el residuo físico. Para esto es necesario dividir los datos entre aquellos que se usarán para entrenamiento y los que serán para validación. Una vez entrenado, el modelo tiene la capacidad de predecir la posición del objeto para fechas específicas. Para evaluar la precisión del modelo, el módulo puede calcular métricas estándar de regresión, así como comparar el desempeño del modelo con y sin la componente física.
 
-# Implementación
+# Desarrollo
 
 Con la clase Cuerpo.py mencionada en la metodología se instanciaron las características del objeto astronómico, posición inicial, velocidad inicial y masa, note que tanto el vector de posición como de velocidad acepta tanto de 2 o 3 coordenadas. Una vez instanciados los objetos tipo Cuerpo, la clase Simulacion_N_Cuerpos.py recibe una lista de ellos para los cuales calcula sus trayectorias aplicando el método de Runge Kutta de orden 4, esto lo hace con un tiempo de paso definido y recalculando su aceleración y posición con los métodos auxiliares programados en la misma clase. Con esto, el último método llamado simular genera un bucle con el tiempo de pasos definidos para crear un 'gif' con la simulación. En este apartado, es importante considerar que si se coloca un parámetro 'h' muy alto puede que en la simulación no se aprecie, o la aceleración y trayectorias no sean las esperadas. Esto se debe a que con un paso muy grande en el método de Runge Kutta el cálculo del nuevo punto por el que pasa el cuerpo será muy lejos del anterior punto demarcado, haciendo que el factor de la distancia entre cuerpos sea insignificante en el cálculo.
 
@@ -104,9 +104,19 @@ La clase Simulacion_2D.py propone un método que junto con los módulos menciona
 
 La clase Simulacion_3D.py propone un método similar, solo que considerando un plano con 3 dimensiones, pero siguiendo la misma dinámica que Simulacion_2D.
 
+El módulo ModeloPINN permite cargar datos astronómicos desde archivos (como CSV) que contengan: fechas u otros tiempos de referencia, posiciones espaciales (x, y, z) de cada cuerpo relevante y posiciones del objeto a modelar. Luego, se encarga de normalizar escalas temporales y espaciales, transformar los datos en un formato que pueda usar la red neuronal y permitir seleccionar qué cuerpos se considerarán como fuentes gravitacionales. Para definir la red, se toma como entrada un tiempo (o conjunto de tiempos) y las posiciones de los planetas en ese instante, para más adelante predecir la posición del objeto. La arquitectura de la red es configurable en cuanto a número de capas y neuronas, pero también se define una configuración por defecto razonable. 
+
+Además de ajustarse a los datos, el modelo también debe cumplir una formulación aproximada de la segunda ley de Newton bajo gravitación. Para esto, se calcula la aceleración que debería tener el objeto según la ley de Newton y se calcula la aceleración implícita en las predicciones del modelo (derivando dos veces la posición predicha respecto al tiempo). La diferencia entre ambas se considera un “residuo físico” que se minimiza durante el entrenamiento. 
+
+Con este enfoque, el módulo entrena la red neuronal en dos fases: primero sin física (ajuste puro a los datos), para tener un punto de partida razonable, y luego con física, minimizando tanto el error de predicción como el residuo físico. Para esto fue necesario dividir los datos entre aquellos que se usarán para entrenamiento y los que serán para validación. Una vez entrenado, el modelo tiene la capacidad de predecir la posición del objeto para fechas específicas. Para evaluar la precisión del modelo, el módulo puede calcular métricas estándar de regresión, así como comparar el desempeño del modelo con y sin la componente física.
+
+
+
+
 # Resultados
 
-En la sección de anexos se puede visualizar imágenes de la simulación tanto en 2 dimensiones como en 3 para algunos casos planteados, entre ellos se encuentra un sistema de 4 cuerpos conformado por una estrella quieta masiva, 2 planetas y un cometa cuya masa era significantemente menor al de los planetas, esto se realizó de esta manera para visualizar las órbitas elípticas que surgen dada la primera Ley de Kepler y además notar como un sistema que en principio se puede ver simple resulta en una trayectoria que escapa del marco inicial, en este caso el cometa dadas sus condiciones iniciales sale expulsado. Recordemos que este sistema es altamente caótico, esto se puede ver con la Figura 2 la cual tiene una configuración similar sin embargo tenemos la estrella en movimiento y el cometa con otras velocidades y posiciones iniciales, este caso se realizó simulando los valores reales del Sol, Tierra y Marte con un cometa aleatorio. Lo realmente importante es como en esta configuración en específico la trayectoria del cometa también está al rededor del sol y no se escapa como sucedió en la Figura 1, además de que visto de forma animada se visualizan las distintas velocidades en zonas como el perihelio y afelio, distancia más cercana al sol y más lejana respectivamente, donde por la segunda Ley de Kepler se sabe que en el perihelio será más rápido pues debe cubrir el mismo área en el mismo tiempo. Por último en la Figura 3 en este caso en 3 dimensiones se observa una configuración de 5 cuerpos arbitrarios donde dos de ellos escapan del sistema inicial, es decir un comportamiento caótico. Para el modelo de Redes Neuronales se obtuvieron diversos resultados se realizó únicamente un análisis en la pérdida medida en los entrenamientos, es decir no se realizaron análisis de métricas del modelo y tampoco de predicciones, esto debido a la complejidad computacional a la hora de realizar las predicciones para obtener estos datos pues el modelo incurrió en muchos problemas y demanda de recursos computacionales. Sin embargo se logró observar una mejora significante en cuanto a un modelo de Redes Neuronales Convencional y un modelo PINN, en la Figura 4 se puede observar la evolución de las pérdidas en entrenamiento y validación cuando se consideraba únicamente el comportamiento de los datos, es decir un modelo convencional de Redes Neuronales, la evolución comienza en aproximadamente el orden de 10e1 y 10e2 sin embargo cae hasta el orden de 10e-5 lo cual es bueno para el modelo pues significa que cada vez sus predicciones se comportan de manera aún más similar a los valores reales, sin embargo cuando se realizaban las predicciones el modelo retornaba valores ya sean infinitos, muy grandes o del todo nulos, lo cual quiere decir que no captó las interacciones para hacer las predicciones, en este caso fue donde se aplicó el modelo PINN con un peso dinámico para la pérdida física y un escalado de las aceleraciones para su comparación. Esta pérdida fue calculada en el modelo original y sus valores rondaron el orden de 10e30 lo cual es muy grande, sin embargo al aplicar el modelo informado con el modelo teórico físico se lograron reducir estas pérdidas hasta valores de 10e8 lo cual sigue siendo significativamente alto para un modelo predictivo sin embargo resulta interesante como un ajuste en las funciones de pérdida puede mejorar tal nivel el modelo. Sin embargo como siguen siendo altas y mejorarlas requieren alta demanda computacional se decidió culminar el proyecto con esta idea.
+En la sección de anexos se puede visualizar imágenes de la simulación tanto en 2 dimensiones como en 3 para algunos casos planteados. Entre ellos se encuentra un sistema de 4 cuerpos conformado por una estrella quieta masiva, 2 planetas y un cometa cuya masa era significantemente menor al de los planetas, esto se realizó de esta manera para visualizar las órbitas elípticas que surgen dada la primera Ley de Kepler y además notar como un sistema que en principio se puede ver simple resulta en una trayectoria que escapa del marco inicial, en este caso el cometa dadas sus condiciones iniciales sale expulsado. Recordemos que este sistema es altamente caótico, esto se puede ver con la Figura 2 la cual tiene una configuración similar sin embargo tenemos la estrella en movimiento y el cometa con otras velocidades y posiciones iniciales, este caso se realizó simulando los valores reales del Sol, Tierra y Marte con un cometa aleatorio. Lo realmente importante es como en esta configuración en específico la trayectoria del cometa también está al rededor del sol y no se escapa como sucedió en la Figura 1, además de que visto de forma animada se visualizan las distintas velocidades en zonas como el perihelio y afelio, distancia más cercana al sol y más lejana respectivamente, donde por la segunda Ley de Kepler se sabe que en el perihelio será más rápido pues debe cubrir el mismo área en el mismo tiempo. Por último en la Figura 3 en este caso en 3 dimensiones se observa una configuración de 5 cuerpos arbitrarios donde dos de ellos escapan del sistema inicial, es decir un comportamiento caótico. 
+Para el modelo de Redes Neuronales se obtuvieron diversos resultados se realizó únicamente un análisis en la pérdida medida en los entrenamientos, es decir no se realizaron análisis de métricas del modelo y tampoco de predicciones, esto debido a la complejidad computacional a la hora de realizar las predicciones para obtener estos datos pues el modelo incurrió en muchos problemas y demanda de recursos computacionales. Sin embargo se logró observar una mejora significante en cuanto a un modelo de Redes Neuronales Convencional y un modelo PINN, en la Figura 4 se puede observar la evolución de las pérdidas en entrenamiento y validación cuando se consideraba únicamente el comportamiento de los datos, es decir un modelo convencional de Redes Neuronales, la evolución comienza en aproximadamente el orden de 10e1 y 10e2 sin embargo cae hasta el orden de 10e-5 lo cual es bueno para el modelo pues significa que cada vez sus predicciones se comportan de manera aún más similar a los valores reales, sin embargo cuando se realizaban las predicciones el modelo retornaba valores ya sean infinitos, muy grandes o del todo nulos, lo cual quiere decir que no captó las interacciones para hacer las predicciones, en este caso fue donde se aplicó el modelo PINN con un peso dinámico para la pérdida física y un escalado de las aceleraciones para su comparación. Esta pérdida fue calculada en el modelo original y sus valores rondaron el orden de 10e30 lo cual es muy grande, sin embargo al aplicar el modelo informado con el modelo teórico físico se lograron reducir estas pérdidas hasta valores de 10e8 lo cual sigue siendo significativamente alto para un modelo predictivo sin embargo resulta interesante como un ajuste en las funciones de pérdida puede mejorar tal nivel el modelo. Sin embargo como siguen siendo altas y mejorarlas requieren alta demanda computacional se decidió culminar el proyecto con esta idea.
 
 # Conclusiones
 
@@ -120,7 +130,9 @@ Para futuras investigaciones se puede mejorar el escalado de los valores o bien 
 
 # Anexos
 
-Repositorio de GitHub : <https://github.com/DebbieCon/simulacion_planetas_CA0305/blob/main/simulacion_planetas_CA0305.qmd>
+Repositorio de GitHub : <https://github.com/DebbieCon/simulacion_planetas_CA0305.git>
+
+Enlace a la presentación: <https://www.canva.com/design/DAGrrNG64po/wg6AohWGLf5kLQu9_7g9Lg/edit?utm_content=DAGrrNG64po&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton>
 
 ![](figs/sim1/1.png){.center width="50%"} ![](figs/sim1/2.png){.center width="50%"} ![](figs/sim1/3.png){.center width="50%"} ![](figs/sim1/4.png){.center width="50%"}
 
@@ -133,5 +145,21 @@ Repositorio de GitHub : <https://github.com/DebbieCon/simulacion_planetas_CA0305
 ![](figs/sim3/1.png){.center width="50%"} ![](figs/sim3/2.png){.center width="50%"} ![](figs/sim3/3.png){.center width="50%"} ![](figs/sim3/4.png){.center width="50%"}
 
 **Figura 3:** Simulación 3D de un sistema conformado por una estrella quieta, dos planetas y dos cometas.
+
+
+![](res/Rplot.jpeg){.center width="80%"} 
+
+**Figura 4: ** Evolución de la pérdida física 
+
+
+![](res/Rplot02.jpeg){.center width="80%"} 
+
+**Figura 5: ** Evolución de la pérdida del modelo implementando física 
+
+![](res/Rplot01.jpeg){.center width="80%"} 
+
+**Figura 6: ** Evolución de la pérdida del modelo sin física 
+
+
 
 # Referencias
